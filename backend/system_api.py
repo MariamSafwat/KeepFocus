@@ -1,11 +1,11 @@
 import pyscreenshot as ImageGrab
-from sys import platform
+import platform
 
 # import linux module
-if platform.startswith('linux'):
+if platform.platform().startswith('Linux'):
      import notify2
 #import win10 module
-elif  platform.startswith('win') and platform.release() == '10':
+elif  platform.platform().startswith('Windows') and platform.release() == '10':
     from win10toast import ToastNotifier
 
 def takeScreenshot ():
@@ -36,13 +36,15 @@ def sendNotification(title, message):
         None
 
     """
-
-    if platform.startswith('linux'):
+    if platform.platform().startswith('Linux'):
         notify2.init('')
         n = notify2.Notification(title, message)
         n.show()
     
-    elif platform.startswith('win') and platform.release() == '10':
+    elif platform.platform().startswith('Windows') and platform.release() == '10':
         n = ToastNotifier()
         n.show_toast(title, message)
 
+
+if __name__ == "__main__":
+    sendNotification("test message", "message")
