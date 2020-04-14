@@ -1,1 +1,3 @@
 pyscreenshot
+notify2; sys_platform == 'linux'
+win10toast; sys_platform == 'win32'
