@@ -49,4 +49,4 @@ def count_occurrence(text,related_words):
     
     return count
 
-extract_txt('images/Shot1.png')
+print(extract_txt('images/Shot1.png'))

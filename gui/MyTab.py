@@ -19,12 +19,13 @@ class MyTabWidget(QWidget):
         self.options = QWidget()
         self.tabs.setMinimumSize(700,600)
 
-
         # Add tabs
         self.tabs.addTab(self.dashboard,QtGui.QIcon("dashboard_grey.png"),"Dashboard")
         self.tabs.addTab(self.options,QtGui.QIcon("settings_grey.png"),"Options")
         
         # Create option tab
+        self.tabs.setTabToolTip(1,'Customize your controls')
+
         self.options.layout = QHBoxLayout(self)
         self.options.layout.setContentsMargins(0,0,0,0);
 
@@ -47,32 +48,27 @@ class MyTabWidget(QWidget):
         self.options.setLayout(self.options.layout)
         
         # Create dashboard tab (to be)
+        self.tabs.setTabToolTip(0,'See your productivity')
+
         #self.dashboard.layout.addWidget(mytable)
 
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
     
-    @pyqtSlot()
-    def on_click(self):
-        print("\n")
-        for currentQTableWidgetItem in self.tableWidget.selectedItems():
-            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
-
 
 class TabWidget(QtWidgets.QTabWidget):
     def __init__(self, *args, **kwargs):
         QtWidgets.QTabWidget.__init__(self, *args, **kwargs)
         tabBar = TabBar(self)
         tabBar.setStyleSheet('''
+
             QTabWidget::pane { /* The tab widget frame */
                 border-top: 2px solid #C2C7CB;
             }
-
             QTabWidget::tab-bar {
                 left: 5px; /* move to the right by 5px */
             }
-
             /* Style the tab using the tab sub-control. Note that
                 it reads QTabBar _not_ QTabWidget */
             QTabBar::tab {
