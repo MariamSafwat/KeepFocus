@@ -1,6 +1,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets 
-from PyQt5.QtWidgets import QWidget,QComboBox, QPushButton, QHeaderView
+from PyQt5.QtWidgets import QWidget,QComboBox, QPushButton, QHeaderView, QVBoxLayout,QHBoxLayout
 
 class MyTableWidget(QtWidgets.QWidget):
     def __init__(self):
@@ -32,7 +32,7 @@ class MyTableWidget(QtWidgets.QWidget):
 
         self.table.setColumnWidth(0,300)   
         self.table.setColumnWidth(1,400)   
-        self.table.setColumnWidth(2,400)   
+        self.table.setColumnWidth(2,350)   
 
         self.table.setStyleSheet('''QTableView  {border: none; }
             QScrollBar:horizontal {
@@ -111,7 +111,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.prevButton.clicked.connect(self.prevContent)
         
         layout = QtWidgets.QGridLayout(self)
-        layout.addWidget(self.table, 0, 0, 0, 0)
+        layout.addWidget(self.table, 0, 0, 1, 0)
         layout.addWidget(self.nextButton, 0,8,1,1)
         layout.addWidget(self.prevButton,0,0,1,1)
 

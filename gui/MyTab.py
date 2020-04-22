@@ -28,7 +28,7 @@ class MyTabWidget(QWidget):
         self.tabs.setTabToolTip(1,'Customize your controls')
 
         self.options.layout = QHBoxLayout(self)
-        self.options.layout.setContentsMargins(0,0,0,0);
+        self.options.layout.setContentsMargins(30,0,60,0);
 
         mytable = MyTableWidget()
         mytable.setStyleSheet("background-color:white")
