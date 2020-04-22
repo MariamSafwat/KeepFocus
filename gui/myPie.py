@@ -1,28 +1,25 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow
-import sys
+from PyQt5 import QtGui , QtWidgets
 from PyQt5.QtChart import QChart, QChartView, QPieSeries, QPieSlice
 from PyQt5.QtGui import QPainter, QPen
 from PyQt5.QtCore import Qt
-from PyQt5 import QtGui
 
 
-
-
-class Window(QMainWindow):
+class PieChart(QtWidgets.QWidget):
     def __init__(self):
-        super().__init__()
+        QtWidgets.QWidget.__init__(self)
 
         self.setWindowTitle("Pie Chart")
-        self.setGeometry(100,100, 1280,600)
 
-        self.show()
         data = {"Social media": 50,"Educational": 20,"News": 10,"Other": 20,}
+        
         self.create_piechart(data)
+        self.chartview.setFixedSize(400,300)
 
-
+        layout = QtWidgets.QGridLayout(self)
+        layout.addWidget(self.chartview, 0, 8, 0, 2)
+        
 
     def create_piechart(self,data):
-        #data = {"Social media": 50,"Educational": 20,"News": 10,"Other": 20,}
         series = QPieSeries()
 
         for name, value in data.items():
@@ -30,9 +27,6 @@ class Window(QMainWindow):
             _slice.setLabelVisible(True) # can be removed if unnecessary
             #_slice.setBrush(color)
             
-
-
-
         chart = QChart()
         chart.legend().hide()
         chart.addSeries(series)
@@ -43,15 +37,5 @@ class Window(QMainWindow):
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignBottom)
 
-        chartview = QChartView(chart)
-        chartview.setRenderHint(QPainter.Antialiasing)
-
-        self.setCentralWidget(chartview)
-
-
-
-
-
-App = QApplication(sys.argv)
-window = Window()
-sys.exit(App.exec_())
+        self.chartview = QChartView(chart)
+        self.chartview.setRenderHint(QPainter.Antialiasing)

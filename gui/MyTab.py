@@ -5,6 +5,7 @@ from PyQt5.QtCore import pyqtSlot , Qt
 from PyQt5.QtGui import QIcon , QFont
 
 from MyTable import MyTableWidget
+from myPie import PieChart
 
 class MyTabWidget(QWidget):
     
@@ -49,8 +50,14 @@ class MyTabWidget(QWidget):
         
         # Create dashboard tab (to be)
         self.tabs.setTabToolTip(0,'See your productivity')
+        self.dashboard.layout = QVBoxLayout(self)
+        self.dashboard.layout.setContentsMargins(0,0,0,0);
 
-        #self.dashboard.layout.addWidget(mytable)
+        dashboard_page = QFormLayout()
+        pieChart = PieChart()
+        dashboard_page.addRow(pieChart)
+        self.dashboard.layout.addItem(dashboard_page)
+        self.dashboard.setLayout(self.dashboard.layout)
 
         # Add tabs to widget
         self.layout.addWidget(self.tabs)

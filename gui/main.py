@@ -9,8 +9,8 @@ class App(QMainWindow):
         super().__init__()
         self.title = 'KeepFocus'
         self.setWindowTitle(self.title)        
-        self.table_widget = MyTabWidget(self)
-        self.setCentralWidget(self.table_widget)
+        self.tab_widget = MyTabWidget(self)
+        self.setCentralWidget(self.tab_widget)
         self.showMaximized()
         self.setContentsMargins(0, 0, 0, 0);
         self.setStyleSheet("background-color:#22282d;")
