@@ -49,4 +49,4 @@ class Programsdata(Base):
     id = Column(Integer, primary_key=True)
     listoftext = Column(String, nullable=False)
     listofimage = Column(Integer, nullable=False)
-
+    productive = Column(Integer, nullable=False)
