@@ -24,7 +24,7 @@ class Statistics(Base):
     __tablename__ = "statistics"
     id = Column(Integer, primary_key=True)
     DateAndTime = Column(DateTime, nullable=False)#data and time for screenshot
-    Timebool = Column(Integer)
+    Timebool = Column(Integer)#Check if the time that screenshot has been taken at the same time that the user wants to notify.
     Dictionary=Column(String, nullable=False)#output from image processing
     productive = Column(String, nullable=False)#check if image is productive or not
     
@@ -46,7 +46,7 @@ class Day(Base):
 
 class Programsdata(Base):
     __tablename__ = "programsdata"
-    id = Column(Integer, primary_key=True)
-    listoftext = Column(String, nullable=False)
-    listofimage = Column(Integer, nullable=False)
-    productive = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)#id for each program
+    listoftext = Column(String, nullable=False)# list of texts that related to each program
+    listofimage = Column(Integer, nullable=False)# list of images that related to each program
+    productive = Column(Integer, nullable=False)#input from user 
