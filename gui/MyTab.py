@@ -6,6 +6,7 @@ from PyQt5.QtGui import QIcon , QFont
 
 from MyTable import MyTableWidget
 from myPie import PieChart
+from myProgBar import ProgressBar
 
 class MyTabWidget(QWidget):
     
@@ -53,9 +54,13 @@ class MyTabWidget(QWidget):
         self.dashboard.layout = QVBoxLayout(self)
         self.dashboard.layout.setContentsMargins(0,0,0,0);
 
-        dashboard_page = QFormLayout()
+        dashboard_page = QHBoxLayout()
+        dashboard_page.setContentsMargins(50,50,50,0);
         pieChart = PieChart()
-        dashboard_page.addRow(pieChart)
+        progBar = ProgressBar()
+        dashboard_page.addWidget(pieChart)
+        dashboard_page.addWidget(progBar)
+
         self.dashboard.layout.addItem(dashboard_page)
         self.dashboard.setLayout(self.dashboard.layout)
 

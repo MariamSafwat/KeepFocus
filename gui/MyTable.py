@@ -31,7 +31,7 @@ class MyTableWidget(QtWidgets.QWidget):
         #self.table.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
 
         self.table.setColumnWidth(0,300)   
-        self.table.setColumnWidth(1,400)   
+        self.table.setColumnWidth(1,350)   
         self.table.setColumnWidth(2,350)   
 
         self.table.setStyleSheet('''QTableView  {border: none; }
@@ -110,11 +110,21 @@ class MyTableWidget(QtWidgets.QWidget):
         self.prevButton.setDisabled(True)
         self.prevButton.clicked.connect(self.prevContent)
         
-        layout = QtWidgets.QGridLayout(self)
-        layout.addWidget(self.table, 0, 0, 1, 0)
-        layout.addWidget(self.nextButton, 0,8,1,1)
-        layout.addWidget(self.prevButton,0,0,1,1)
 
+        layout = QVBoxLayout (self)
+        layout.addWidget(self.table)
+        
+        layout.setContentsMargins(20,30,20,30)
+        buttons = QHBoxLayout(self)
+
+        buttons.setSpacing (800)
+        buttons.setContentsMargins(0,0,30,80)
+        buttons.addWidget(self.prevButton)
+        buttons.addWidget(self.nextButton)
+        layout.addLayout(buttons)
+
+        
+    
 
     def displayContent(self):
         self.table.clearContents()
