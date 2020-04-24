@@ -35,8 +35,9 @@ def returnProgramTexts():
     
     dic = {}
     for program in programs:
-        dic[program.id] = program.listoftext
-
+        x = program.listoftext
+        x = ast.literal_eval(x)
+        dic[program.id]=x
     return dic
 
 
@@ -57,6 +58,7 @@ def updateOnScreenshoot(timerOn, program):
     '''
     takes the classified programs and make new statistcs instance and update the day data
     '''
+
     checkDay()
 
     programIns = session.query(Programsdata).filter(id = program)[0]
