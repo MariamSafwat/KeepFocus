@@ -32,26 +32,34 @@ class BarChart(QtWidgets.QWidget):
     def create_barchart(self, data0, data1):
         set0 = QBarSet('Productive')
         set1 = QBarSet('Destructive')
+        
         set0.append(data0)
         set1.append(data1)
+        
         series = QBarSeries()
+        
         series.append(set0)
         series.append(set1)
+        
         chart = QChart()
         chart.addSeries(series)
         chart.setTitle('Weekly Bar Chart')
         chart.setAnimationOptions(QChart.SeriesAnimations)
+        
         days = ('Mon', 'Teu', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')
+        
         axisX = QBarCategoryAxis()
         axisX.append(days)
+        
         axisY = QValueAxis()
         axisY.setRange(0, 24)
+        
         chart.addAxis(axisX, Qt.AlignBottom)
         chart.addAxis(axisY, Qt.AlignLeft)
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignBottom)
         self.chartview = QChartView(chart)
-        #self.setCentralWidget(chartView)
+        
         self.chartview.setRenderHint(QPainter.Antialiasing)
         
     
