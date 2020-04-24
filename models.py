@@ -50,5 +50,9 @@ class Programsdata(Base):
     listofimage = Column(Integer, nullable=False)# list of images that related to each program
     productive = Column(Integer, nullable=False)#input from user 
     
+class Category(Base):
+    __tablename__ = "category"
+    id = Column(Integer, primary_key=True)
+    name = Column(String,ForeignKey('category.name'), nullable=False)
 
 Base.metadata.create_all(engine)
