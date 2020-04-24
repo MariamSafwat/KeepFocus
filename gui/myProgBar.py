@@ -30,4 +30,4 @@ class ProgressBar(QtWidgets.QWidget):
             layout.addItem(line)
 
         self.widget.setLayout(layout)      
-        self.widget.setFixedSize(500,400)
+        self.widget.setFixedSize(400,300)

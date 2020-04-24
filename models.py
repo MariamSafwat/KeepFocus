@@ -29,10 +29,6 @@ class Statistics(Base):
     timer = Column(Boolean)#Check if the time that screenshot has been taken at the same time that the user wants to notify.
     programe=Column(String, nullable=False)#output from image processing
     productive = Column(String, nullable=False)#check if image is productive or not
-    def insert(self,dat,t,prog,productive):
-        s=Statistics(id=self.id,dateAndTime=dat,timer=t,programe=prog,productive=productive)
-        session.add(s)
-        session.commit()
 
 
 class Day(Base):
@@ -40,19 +36,14 @@ class Day(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date, nullable=False)
     statistics = relationship("Statistics",
-                    secondary=association_table,nullable=True)
+                    secondary=association_table)
     allCatagory = Column(String, nullable=False)
     totalTime = Column(Integer)
     timerOnTime = Column(Integer)
-    def insert(self,date,statistics,allCatagory,totalTime,timerOnTime):
-        s=Day(id=self.id,date=date,statistics=statistics,allCatagory=allCatagory,totalTime=totalTime,timerOnTime=timerOnTime)
-        session.add(s)
-        session.commit()
-
 
 
 class Programsdata(Base):
-    __tablename__ = "programsdata"
+    __tablename__ = "Programsdata"
     id = Column(Integer, primary_key=True)#id for each program
     name = Column(String, nullable=False)#name of the programe 
     listoftext = Column(String, nullable=False)# list of texts that related to each program
