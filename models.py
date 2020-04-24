@@ -29,7 +29,7 @@ class Statistics(Base):
     timer = Column(BOOLEAN)#Check if the time that screenshot has been taken at the same time that the user wants to notify.
     programe=Column(String, nullable=False)#output from image processing
     productive = Column(String, nullable=False)#check if image is productive or not
-#########################################################################################    
+
 
 class Day(Base):
     __tablename__ = "Day"
