@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Date,Table
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Date,Table, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
 
@@ -26,9 +26,13 @@ class Statistics(Base):
     __tablename__ = "statistics"
     id = Column(Integer, primary_key=True)
     dateAndTime = Column(DateTime, nullable=False)#data and time for screenshot
-    timer = Column(BOOLEAN)#Check if the time that screenshot has been taken at the same time that the user wants to notify.
+    timer = Column(Boolean)#Check if the time that screenshot has been taken at the same time that the user wants to notify.
     programe=Column(String, nullable=False)#output from image processing
     productive = Column(String, nullable=False)#check if image is productive or not
+    def insert(self,dat,t,prog,productive):
+        s=Statistics(id=self.id,dateAndTime=dat,timer=t,programe=prog,productive=productive)
+        session.add(s)
+        session.commit()
 
 
 class Day(Base):
@@ -36,10 +40,15 @@ class Day(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date, nullable=False)
     statistics = relationship("Statistics",
-                    secondary=association_table)
+                    secondary=association_table,nullable=True)
     allCatagory = Column(String, nullable=False)
     totalTime = Column(Integer)
     timerOnTime = Column(Integer)
+    def insert(self,date,statistics,allCatagory,totalTime,timerOnTime):
+        s=Day(id=self.id,date=date,statistics=statistics,allCatagory=allCatagory,totalTime=totalTime,timerOnTime=timerOnTime)
+        session.add(s)
+        session.commit()
+
 
 
 class Programsdata(Base):
