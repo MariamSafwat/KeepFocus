@@ -24,7 +24,7 @@ class PieChart(QtWidgets.QWidget):
         layout = QVBoxLayout (self)        
         layout.addWidget(self.chartview)
         self.widget.setLayout(layout)
-        self.widget.setFixedSize(500,400)
+        self.widget.setFixedSize(400,300)
 
 
     def create_piechart(self,data):
