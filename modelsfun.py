@@ -15,3 +15,18 @@ def checkDay():
     if day.Date != today:
         # initDay()
         pass
+
+
+def returnProgramImages():
+    '''
+    Return A list of all programs images directory
+    '''
+
+    programs = session.query(Programsdata).all()
+    
+    dic = {}
+    for program in programs:
+        dic[program.id] = program.listofimage
+
+    return dic
+
