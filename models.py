@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Date,Table
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Date,Table,Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
 
@@ -26,7 +26,7 @@ class Statistics(Base):
     __tablename__ = "statistics"
     id = Column(Integer, primary_key=True)
     dateAndTime = Column(DateTime, nullable=False)#data and time for screenshot
-    timer = Column(BOOLEAN)#Check if the time that screenshot has been taken at the same time that the user wants to notify.
+    timer = Column(Boolean)#Check if the time that screenshot has been taken at the same time that the user wants to notify.
     programe=Column(String, nullable=False)#output from image processing
     productive = Column(String, nullable=False)#check if image is productive or not
 
@@ -43,7 +43,7 @@ class Day(Base):
 
 
 class Programsdata(Base):
-    __tablename__ = "programsdata"
+    __tablename__ = "Programsdata"
     id = Column(Integer, primary_key=True)#id for each program
     name = Column(String, nullable=False)#name of the programe 
     listoftext = Column(String, nullable=False)# list of texts that related to each program
