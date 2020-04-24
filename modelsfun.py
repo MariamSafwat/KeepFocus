@@ -30,3 +30,28 @@ def returnProgramImages():
 
     return dic
 
+
+def updateOnScreenshoot(timerOn, program):
+    '''
+    takes the classified programs and make new statistcs instance and update the day data
+    '''
+
+
+    checkDay()
+
+    programIns = session.query(Programsdata).filter(name = program)
+    produciv = programIns.productive
+
+    newStatistics = Statistics(dateAndTime = datetime.datetime.now(),
+                             timer = timerOn, programe = program, producive = produciv  )
+    session.add(newStatistics)
+
+    day = session.query(Day).first()
+    day.statistics.append(newStatistics)
+    day.totalTime += 1
+    if timerOn == True:
+        day.timerOnTime += 1
+
+    dic = day.allCatagory
+    dic = ast.literal_eval(dic)
+    dic[program] = int(dic[program]) + 1
