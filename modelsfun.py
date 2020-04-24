@@ -39,7 +39,7 @@ def updateOnScreenshoot(timerOn, program):
 
     checkDay()
 
-    programIns = session.query(Programsdata).filter(name = program)
+    programIns = session.query(Programsdata).filter(id = program)[0]
     produciv = programIns.productive
 
     newStatistics = Statistics(dateAndTime = datetime.datetime.now(),
@@ -55,3 +55,5 @@ def updateOnScreenshoot(timerOn, program):
     dic = day.allCatagory
     dic = ast.literal_eval(dic)
     dic[program] = int(dic[program]) + 1
+    day.allCatagory = str(dic)
+    session.commit()
