@@ -3,6 +3,23 @@ import datetime
 import ast
 
 
+def selectday(sdate):
+    d=session.execute("SELECT * from Day where date=:d",{'d':sdate}).first()
+    category_dic={}
+    final_dic={}
+    cat=d.allCatagory
+    cat = ast.literal_eval(cat)
+    for k in cat:
+        day=session.execute("SELECT name from Programsdata where id=:d",{'d':k}).first()
+        category_dic[day[0]]=cat[k]
+    final_dic['date']=sdate
+    final_dic['allcategory']=category_dic
+    final_dic['totalTime']=d.totalTime
+    final_dic['timerOnTime']=d.timerOnTime
+    return final_dic
+    
+
+
 
 def checkDay():
     '''
@@ -52,6 +69,7 @@ def returnProgramImages():
         dic[program.id] = program.listofimage
 
     return dic
+
 
 
 def updateOnScreenshoot(timerOn, program):

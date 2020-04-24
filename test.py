@@ -1,14 +1,23 @@
 from modelsfun import *
-
+from sqlalchemy import func
+import datetime
 
 '''
-day=Day(date=datetime.date.today(),allCatagory="",totalTime=0,timerOnTime=0)
+c={1:2,2:1}
+datestr='2020-04-23'
+date=datetime.datetime.strptime(datestr, '%Y-%m-%d').date()
+day=Day(date=date,allCatagory=str(c),totalTime=0,timerOnTime=0)
 session.add(day)
 session.commit()
-
-s=session.query(Statistics).first()
-day.statistics.append(s)
 '''
+''''
+datestr='2020-04-23'
+date=datetime.datetime.strptime(datestr, '%Y-%m-%d').date()
+d=session.execute("SELECT * from Day where date=:d",{'d':date}).first()
+s=session.execute("SELECT * from statistics ").first()
+'''
+#d.statistics.append(s)
+
 #insert in programsdata
 '''
 dic = ['fb','face','FB']
@@ -25,7 +34,12 @@ session.add(p)
 session.commit()
 '''
 
+#d=session.query(Day).all()
+nowdate=datetime.date.today()
+
+datestr='2020-04-23'
+date=datetime.datetime.strptime(datestr, '%Y-%m-%d').date()
+selectday(date)
 
 
-
-print(returnProgramTexts())
+#print(returnProgramTexts())
