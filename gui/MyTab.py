@@ -7,6 +7,7 @@ from PyQt5.QtGui import QIcon , QFont
 from MyTable import MyTableWidget
 from myPie import PieChart
 from myProgBar import ProgressBar
+from myBar import BarChart
 
 class MyTabWidget(QWidget):
     
@@ -55,13 +56,19 @@ class MyTabWidget(QWidget):
         self.dashboard.layout.setContentsMargins(0,0,0,0);
 
         dashboard_page = QHBoxLayout()
-        dashboard_page.setContentsMargins(50,50,50,0);
+        dashboard_page.setContentsMargins(50,50,50,10);
         pieChart = PieChart()
         progBar = ProgressBar()
+        barChart = BarChart()
         dashboard_page.addWidget(pieChart)
         dashboard_page.addWidget(progBar)
+        
+        dashboard_page1 = QHBoxLayout()
+        dashboard_page.setContentsMargins(20,20,20,0);
+        dashboard_page1.addWidget(barChart)
 
         self.dashboard.layout.addItem(dashboard_page)
+        self.dashboard.layout.addItem(dashboard_page1)
         self.dashboard.setLayout(self.dashboard.layout)
 
         # Add tabs to widget
