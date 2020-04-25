@@ -47,10 +47,11 @@ class Programsdata(Base):
     id = Column(Integer, primary_key=True)#id for each program
     name = Column(String, nullable=False)#name of the programe 
     listoftext = Column(String, nullable=False)# list of texts that related to each program
-    listofimage = Column(Integer, nullable=False)# list of images that related to each program
+    listofimage = Column(String, nullable=False)# list of images that related to each program
     productive = Column(Integer, nullable=False)#input from user 
     prog_category =relationship("Category")
     
+
 class Category(Base):
     __tablename__ = "category"
     id = Column(Integer, primary_key=True)

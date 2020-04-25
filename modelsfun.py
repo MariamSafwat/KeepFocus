@@ -1,21 +1,23 @@
 from models import *
 import datetime
 import ast
-
+import csv
 
 def selectday(sdate):
-    d=session.execute("SELECT * from Day where date=:d",{'d':sdate}).first()
-    category_dic={}
-    final_dic={}
-    cat=d.allCatagory
-    cat = ast.literal_eval(cat)
-    for k in cat:
-        day=session.execute("SELECT name from Programsdata where id=:d",{'d':k}).first()
-        category_dic[day[0]]=cat[k]
+    day=session.execute("SELECT * from Day where date=:d",{'d':sdate}).first()
+    programs_dic = {}
+    final_dic = {}
+    programs = day.allprograms
+    programs = ast.literal_eval(programs)
+
+    for program in programs:
+        day=session.execute("SELECT name from Programsdata where id=:d",{'d':program}).first()
+        category_dic[day[0]]=programs[program]
+    
     final_dic['date']=sdate
     final_dic['allcategory']=category_dic
-    final_dic['totalTime']=d.totalTime
-    final_dic['timerOnTime']=d.timerOnTime
+    final_dic['totalTime']=day.totalTime
+    final_dic['timerOnTime']=day.timerOnTime
     return final_dic
     
 
@@ -38,8 +40,14 @@ def initday():
     '''
     this function initialize new day
     '''
-    today=datetime.date.first()
-    newday=Day(date=today,allCatagory="",totalTime=0,timerOnTime=0)
+    programs_list=session.execute("SELECT * from Programsdata").fetchall()
+    programs_dic={}
+    
+    for program in programs_list:
+        programs_dic[program.id]=0
+    
+    today=datetime.date.today()
+    newday=Day(date=today,allCatagory=str(programs_dic),totalTime=0,timerOnTime=0)
     session.add(newday)
     session.commit()
 
@@ -99,11 +107,15 @@ def updateOnScreenshoot(timerOn, program):
     session.commit()
 
 def AddingPrpramsData(csv_path):
+    '''
+    this function reads data from csv file
+    '''
     f = open(csv_path)
     reader = csv.reader(f)
-    for id, listoftext, listofimage,productive,prog_category in reader:
-        ProgData = Programsdata(id=id,listoftext=listoftext,listofimage=listofimage , productive=productive,prog_category=prog_category)
+    
+    for name, listoftext, listofimage,productive in reader:
+        ProgData = Programsdata(name=name,listoftext=listoftext,listofimage=listofimage , productive=productive)
         session.add(ProgData)
     session.commit()
 
-     
+    
