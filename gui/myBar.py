@@ -24,10 +24,10 @@ class BarChart(QtWidgets.QWidget):
         self.create_barchart(data0,data1)
 
         layout = QVBoxLayout (self)
-        layout.setContentsMargins(20,20,20,20)
+        layout.setContentsMargins(5,5,5,5)
         layout.addWidget(self.chartview)
         self.widget.setLayout(layout)
-        self.widget.setFixedSize(400,300)
+        self.widget.setFixedSize(500,300)
         
     def create_barchart(self, data0, data1):
         set0 = QBarSet('Productive')
