@@ -97,3 +97,13 @@ def updateOnScreenshoot(timerOn, program):
     dic[program] = int(dic[program]) + 1
     day.allCatagory = str(dic)
     session.commit()
+
+def AddingPrpramsData(csv_path):
+    f = open(csv_path)
+    reader = csv.reader(f)
+    for id, listoftext, listofimage,productive,prog_category in reader:
+        ProgData = Programsdata(id=id,listoftext=listoftext,listofimage=listofimage , productive=productive,prog_category=prog_category)
+        session.add(ProgData)
+    session.commit()
+
+     
