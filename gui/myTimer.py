@@ -76,5 +76,5 @@ class Timer(QWidget):
             self.btnStart.setText('Stop')
         else:
             self.btnStart.setText('Start')
-            self.currentTime = QTime(0,0,0)
+            #self.currentTime = QTime(0,0,0)
 
