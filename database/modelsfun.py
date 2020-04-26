@@ -5,6 +5,7 @@ import csv
 
 
 def selectday(sdate):
+    sdate = str(sdate)
     day =session.execute("SELECT * from Day where date=:d",{'d':sdate}).first()
     programs_dic = {}
     final_dic = {}
@@ -14,7 +15,8 @@ def selectday(sdate):
 
     for program in programs:
         name = session.query(Programsdata).get(program).name
-        category_dic[name] = day.allPrograms[program]
+        print(programs[program])
+        category_dic[name] = programs[program]
     
     final_dic['date']=sdate
     final_dic['allPrograms '] = category_dic
@@ -29,7 +31,7 @@ def checkDay():
     this function checks the last saved day instacnce 
     in the database to make sure it's todays
     '''
-    day = session.query(Day).first()
+    day = session.query(Day).order_by(Day.id.desc()).first()
     today = datetime.date.today()
     if day is None:
         initday()
@@ -47,7 +49,7 @@ def initday():
     for program in programs_list:
         programs_dic[program.id]=0
     
-    today=datetime.date.today()
+    today = datetime.date.today()
     newday=Day(date=today,allPrograms=str(programs_dic),totalTime=0,timerOnTime=0)
     session.add(newday)
     session.commit()
@@ -95,7 +97,7 @@ def updateOnScreenshoot(timerOn, program):
                              timer = timerOn, programe = program, productive = produciv  )
     session.add(newStatistics)
 
-    day = session.query(Day).first()
+    day = session.query(Day).order_by(Day.id.desc()).first()
     day.statistics.append(newStatistics)
     day.totalTime += 1
     if timerOn == True:
@@ -123,16 +125,22 @@ def AddingPrpramsData(csv_path):
 
 # test code 
 
-# AddingPrpramsData('database/prog.csv')
+AddingPrpramsData('database/prog.csv')
+
 programs = session.query(Programsdata).all()
 for program in programs:
     print(program.name, program.id)
+
 updateOnScreenshoot(True, 1)
 today = datetime.date.today()
 seletect = selectday(today)
 print(seletect)
-listi = returnProgramImages()
-print(listi)
+print(today)
+day = session.query(Day).order_by(Day.id.desc()).first()
+print(seletect)
+
+# listi = returnProgramImages()
+# print(listi)
 # listi = returnProgramTexts()
 # print(listi)
 
