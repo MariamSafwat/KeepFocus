@@ -1,13 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Date,Table,Boolean
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Date,Table, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
 
 
 
 
-engine = create_engine('sqlite:///database.db',echo=True)
+engine = create_engine('sqlite:///database/database.db',echo=True)
 # the ORM must have asession to make middle-ground between the objects in Python and the engine that actually communicates with the database. 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -37,7 +37,7 @@ class Day(Base):
     date = Column(Date, nullable=False)
     statistics = relationship("Statistics",
                     secondary=association_table)
-    allCatagory = Column(String, nullable=False)
+    allPrograms = Column(String, nullable=False)
     totalTime = Column(Integer)
     timerOnTime = Column(Integer)
 
@@ -47,13 +47,14 @@ class Programsdata(Base):
     id = Column(Integer, primary_key=True)#id for each program
     name = Column(String, nullable=False)#name of the programe 
     listoftext = Column(String, nullable=False)# list of texts that related to each program
-    listofimage = Column(Integer, nullable=False)# list of images that related to each program
+    listofimage = Column(String, nullable=False)# list of images that related to each program
     productive = Column(Integer, nullable=False)#input from user 
     prog_category =relationship("Category")
     
+
 class Category(Base):
     __tablename__ = "category"
     id = Column(Integer, primary_key=True)
-    name = Column(String,ForeignKey('category.name'), nullable=False)
+    name = Column(String,ForeignKey('Programsdata.id'), nullable=False)
 
 Base.metadata.create_all(engine)
