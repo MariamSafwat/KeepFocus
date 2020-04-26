@@ -1,26 +1,27 @@
-from models import *
+from model import session,Day,Programsdata,Statistics,Category
 import datetime
 import ast
 import csv
 
+
 def selectday(sdate):
-    day=session.execute("SELECT * from Day where date=:d",{'d':sdate}).first()
+    day =session.execute("SELECT * from Day where date=:d",{'d':sdate}).first()
     programs_dic = {}
     final_dic = {}
-    programs = day.allprograms
+    category_dic  = {}
+    programs = day.allPrograms
     programs = ast.literal_eval(programs)
 
     for program in programs:
-        day=session.execute("SELECT name from Programsdata where id=:d",{'d':program}).first()
-        category_dic[day[0]]=programs[program]
+        name = session.query(Programsdata).get(program).name
+        category_dic[name] = day.allPrograms[program]
     
     final_dic['date']=sdate
-    final_dic['allcategory']=category_dic
-    final_dic['totalTime']=day.totalTime
-    final_dic['timerOnTime']=day.timerOnTime
+    final_dic['allPrograms '] = category_dic
+    final_dic['totalTime'] = day.totalTime
+    final_dic['timerOnTime'] = day.timerOnTime
     return final_dic
     
-
 
 
 def checkDay():
@@ -47,7 +48,7 @@ def initday():
         programs_dic[program.id]=0
     
     today=datetime.date.today()
-    newday=Day(date=today,allCatagory=str(programs_dic),totalTime=0,timerOnTime=0)
+    newday=Day(date=today,allPrograms=str(programs_dic),totalTime=0,timerOnTime=0)
     session.add(newday)
     session.commit()
 
@@ -87,11 +88,11 @@ def updateOnScreenshoot(timerOn, program):
 
     checkDay()
 
-    programIns = session.query(Programsdata).filter(id = program)[0]
+    programIns = session.query(Programsdata).get(program)
     produciv = programIns.productive
 
     newStatistics = Statistics(dateAndTime = datetime.datetime.now(),
-                             timer = timerOn, programe = program, producive = produciv  )
+                             timer = timerOn, programe = program, productive = produciv  )
     session.add(newStatistics)
 
     day = session.query(Day).first()
@@ -99,12 +100,14 @@ def updateOnScreenshoot(timerOn, program):
     day.totalTime += 1
     if timerOn == True:
         day.timerOnTime += 1
+    session.commit()
 
-    dic = day.allCatagory
+    dic = day.allPrograms
     dic = ast.literal_eval(dic)
     dic[program] = int(dic[program]) + 1
-    day.allCatagory = str(dic)
+    day.allPrograms = str(dic)
     session.commit()
+
 
 def AddingPrpramsData(csv_path):
     '''
@@ -118,4 +121,19 @@ def AddingPrpramsData(csv_path):
         session.add(ProgData)
     session.commit()
 
-    
+# test code 
+
+# AddingPrpramsData('database/prog.csv')
+programs = session.query(Programsdata).all()
+for program in programs:
+    print(program.name, program.id)
+updateOnScreenshoot(True, 1)
+today = datetime.date.today()
+seletect = selectday(today)
+print(seletect)
+listi = returnProgramImages()
+print(listi)
+# listi = returnProgramTexts()
+# print(listi)
+
+

@@ -6,7 +6,7 @@ import datetime
 c={1:2,2:1}
 datestr='2020-04-23'
 date=datetime.datetime.strptime(datestr, '%Y-%m-%d').date()
-day=Day(date=date,allCatagory=str(c),totalTime=0,timerOnTime=0)
+day=Day(date=date,allPrograms=str(c),totalTime=0,timerOnTime=0)
 session.add(day)
 session.commit()
 '''

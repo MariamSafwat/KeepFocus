@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 
-engine = create_engine('sqlite:///database.db',echo=True)
+engine = create_engine('sqlite:///database/database.db',echo=True)
 # the ORM must have asession to make middle-ground between the objects in Python and the engine that actually communicates with the database. 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -37,7 +37,7 @@ class Day(Base):
     date = Column(Date, nullable=False)
     statistics = relationship("Statistics",
                     secondary=association_table)
-    allCatagory = Column(String, nullable=False)
+    allPrograms = Column(String, nullable=False)
     totalTime = Column(Integer)
     timerOnTime = Column(Integer)
 
