@@ -1,13 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets 
 
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QComboBox, QLabel, QFormLayout, QPushButton
-from PyQt5.QtCore import pyqtSlot , Qt
-from PyQt5.QtGui import QIcon , QFont
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QComboBox, QLabel, QFormLayout, QPushButton, QToolButton
+from PyQt5.QtCore import pyqtSlot , Qt, QSize
+from PyQt5.QtGui import QIcon , QFont, QPixmap, QPalette, QBrush, QColor
 
 from MyTable import MyTableWidget
 from myPie import PieChart
 from myProgBar import ProgressBar
 from myBar import BarChart
+from myTimer import Timer
 
 class MyTabWidget(QWidget):
     
@@ -22,10 +23,12 @@ class MyTabWidget(QWidget):
         self.options = QWidget()
         self.tabs.setMinimumSize(700,600)
 
+        self.tabs.setIconSize(QSize(30,30))        
+    
+
         # Add tabs
         self.tabs.addTab(self.dashboard,QtGui.QIcon("dashboard_grey.png"),"Dashboard")
         self.tabs.addTab(self.options,QtGui.QIcon("settings_grey.png"),"Options")
-        
         # Create option tab
         self.tabs.setTabToolTip(1,'Customize your controls')
 
@@ -50,25 +53,29 @@ class MyTabWidget(QWidget):
         self.options.layout.addItem(optionPage)        
         self.options.setLayout(self.options.layout)
         
-        # Create dashboard tab (to be)
+        # Create dashboard tab 
         self.tabs.setTabToolTip(0,'See your productivity')
-        self.dashboard.layout = QVBoxLayout(self)
-        self.dashboard.layout.setContentsMargins(0,0,0,0);
+        self.dashboard.layout = QHBoxLayout(self)
+        self.dashboard.layout.setContentsMargins(50,20,0,0);
 
-        dashboard_page = QHBoxLayout()
-        dashboard_page.setContentsMargins(50,50,50,10);
+        dashboard_page = QVBoxLayout()
+        dashboard_page.setContentsMargins(0,0,0,0);
         pieChart = PieChart()
         progBar = ProgressBar()
         barChart = BarChart()
+        timer = Timer()
+
+        dashboard_page.addWidget(timer)
         dashboard_page.addWidget(pieChart)
-        dashboard_page.addWidget(progBar)
-        
-        dashboard_page1 = QHBoxLayout()
-        dashboard_page.setContentsMargins(20,20,20,0);
+        dashboard_page1 = QVBoxLayout()
+        dashboard_page1.setContentsMargins(0,0,0,0);
+        dashboard_page1.addWidget(progBar)
         dashboard_page1.addWidget(barChart)
 
-        self.dashboard.layout.addItem(dashboard_page)
-        self.dashboard.layout.addItem(dashboard_page1)
+        self.dashboard.layout.addLayout(dashboard_page)
+        self.dashboard.layout.addLayout(dashboard_page1)
+        
+
         self.dashboard.setLayout(self.dashboard.layout)
 
         # Add tabs to widget
@@ -93,12 +100,13 @@ class TabWidget(QtWidgets.QTabWidget):
             QTabBar::tab {
                 background-color:#22282d;
                 color:#FFFFFF;
-                min-width: 8ex;
+                min-width: 12ex;
+                min-height: 12ex;
                 text-align:left;
                 padding: 5px;
                 font-family:"Times New Roman", Times, serif;
                 font-weight:bold;
-                font-size:16px; 
+                font-size:18px; 
                 border:none;
                 margin-right:1px;
             }

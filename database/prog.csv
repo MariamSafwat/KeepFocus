@@ -3,3 +3,11 @@ pycharm,"PC,pycharm",..//images//pycharm,0,1
 sublime,"sublime Text,ST,st",..//images//sublime,0,1
 photoshop,"PS,photoshop",..//images//photoshop,0,2
 illustrator,"AI,Ai,st,ST",..//images//illustrator,0,2
+Egybest,"""Egybest,Comedy,Romantic,Drama,Horror,Film,Series,Action,Cartoon,movies""",../images/Egybest,0,ENTERTAINMENT
+Netflix,"""movies,films,series,Netflix,Comedy,Horror,Romantic,Cartoon,drama""",../images/Netflix,0,ENTERTAINMENT
+OLX,,../images/OLX,0,SHOPPING
+Souq,,../images/Souq,0,SHOPPING
+Amazon,,../images/Amazon,0,SHOPPING
+Youtube,"YouTube,Home,Trending,Subscriptions,Library,Recommended,All Recommendations,Latest YouTube posts,WATCH MORE,Up next,AUTOPLAY,ON TRENDING,SHARE,SAVE,views,SUBSCRIPE",../images/Youtube,0,OTHERS
+Google,"Google Search,I'm Feeling Lucky,Google offered in,Gmail,images",../images/Google,0,OTHERS
+Terminal,"$,Terminal,Windows PowerShell,Command Prompt,cmd",../images/Terminal,0,OTHERS

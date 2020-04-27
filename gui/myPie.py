@@ -8,10 +8,9 @@ class PieChart(QtWidgets.QWidget):
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
 
-        self.widget = QWidget(self)
-        self.widget.setObjectName("main")
-        self.widget.setStyleSheet("""
-                    QWidget#main{
+        self.setObjectName("main")
+        self.setStyleSheet("""
+                    QWidget{
                         border:1px solid #148CD2;
                         border-radius:10px;
                     }
@@ -21,11 +20,12 @@ class PieChart(QtWidgets.QWidget):
         
         self.create_piechart(data)
 
-        layout = QVBoxLayout (self)        
+        layout = QVBoxLayout (self)  
+        layout.setContentsMargins(5,5,50,30)      
         layout.addWidget(self.chartview)
-        self.widget.setLayout(layout)
-        self.widget.setFixedSize(400,300)
 
+        self.setLayout(layout)
+        self.setFixedSize(500,400)
 
     def create_piechart(self,data):
         series = QPieSeries()

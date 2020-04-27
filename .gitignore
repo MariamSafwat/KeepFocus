@@ -2,3 +2,4 @@
 venv
 req.txt
 __pycache__
+.idea
