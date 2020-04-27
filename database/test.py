@@ -2,6 +2,7 @@ from modelsfun import *
 from sqlalchemy import func
 import datetime
 
+ 
 '''
 c={1:2,2:1}
 datestr='2020-04-23'
@@ -40,24 +41,40 @@ strdic = str(dic)
 p=Programsdata(name='Facebook',listoftext=strdic,listofimage=0,productive=0)
 session.add(p)
 session.commit()
+
+cat=Category(name=)
+'''
+'''
 dic = ['WA','wa','whats']
 strdic = str(dic)
 p=Programsdata(name='whatsapp',listoftext=strdic,listofimage=0,productive=0)
 session.add(p)
 session.commit()
 '''
-
 #d=session.query(Day).all()
-
+'''
 nowdate=datetime.date.today()
 
-#datestr='2020-04-23'
-#date=datetime.datetime.strptime(datestr, '%Y-%m-%d').date()
+datestr='2020-04-23'
+sdate=datetime.datetime.strptime(datestr, '%Y-%m-%d').date()
 #selectday(date)
+AddingPrpramsData('prog.csv')
+
+p=session.execute("SELECT * from Programsdata ").first()
+l_str=p.listoftext
+l=[]
+l=l_str.split(',')
+print(l[0])
+'''
+c=Category(name="SOFTWARE DEV")
+session.add(c)
+c=Category(name="GRAPHIC DESIGN")
+session.add(c)
+session.commit()
+
+AddingPrpramsData('prog.csv')
 
 
-#print(returnProgramTexts())
 
-#AddingPrpramsData('prog.csv')
-date=datetime.date.today()
-initday()
+
+

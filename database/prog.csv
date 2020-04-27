@@ -1,3 +1,5 @@
-coursera  ,"  cours,certificate,courses",0,0
-Facebook  ,"  face,fb,FB",0,0
-Whatsapp  ,"  Whatsapp,wa,WA",0,0
+vsCode,"Visual Studio Code,vs code,VS Code",..//images//vsCode,0,1
+pycharm,"PC,pycharm",..//images//pycharm,0,1
+sublime,"sublime Text,ST,st",..//images//sublime,0,1
+photoshop,"PS,photoshop",..//images//photoshop,0,2
+illustrator,"AI,Ai,st,ST",..//images//illustrator,0,2

@@ -116,14 +116,15 @@ def AddingPrpramsData(csv_path):
     f = open(csv_path)
     reader = csv.reader(f)
     
-    for name, listoftext, listofimage,productive in reader:
-        ProgData = Programsdata(name=name,listoftext=listoftext,listofimage=listofimage , productive=productive)
+    for name, listoftext, listofimage,productive,category_id in reader:
+        ProgData = Programsdata(name=name,listoftext=listoftext,listofimage=listofimage , productive=productive , prog_category=category_id)
         session.add(ProgData)
     session.commit()
 
 # test code 
 
 # AddingPrpramsData('database/prog.csv')
+'''
 programs = session.query(Programsdata).all()
 for program in programs:
     print(program.name, program.id)
@@ -133,6 +134,7 @@ seletect = selectday(today)
 print(seletect)
 listi = returnProgramImages()
 print(listi)
+'''
 # listi = returnProgramTexts()
 # print(listi)
 
