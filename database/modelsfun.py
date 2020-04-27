@@ -1,4 +1,4 @@
-from model import session,Day,Programsdata,Statistics,Category
+from .model import *
 import datetime
 import ast
 import csv
@@ -138,27 +138,7 @@ def add_category(csv_path):
     
 # test code 
 
-#AddingProgramsData('database/myProg.csv')
+add_category('database/category.csv')
 
-# programs = session.query(Programsdata).all()
-# for program in programs:
-#     print(program.name, program.id)
+AddingProgramsData('database/prog.csv')
 
-# updateOnScreenshoot(True, 1)
-# today = datetime.date.today()
-# seletect = selectday(today)
-# print(seletect)
-# print(today)
-# day = session.query(Day).order_by(Day.id.desc()).first()
-# print(seletect)
-
-
-# listi = returnProgramImages()
-# print(listi)
-
-# add_category('database/category.csv')
-'''
-categ = session.query(Category).all()
-for cat in categ:
-    print(cat.name, cat.prog)
-  '''
