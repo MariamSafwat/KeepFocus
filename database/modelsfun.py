@@ -118,14 +118,8 @@ def AddingProgramsData(csv_path):
     f = open(csv_path)
     reader = csv.reader(f)
     
-<<<<<<< HEAD
     for name, listoftext, listofimage,productive,category_id in reader:
         ProgData = Programsdata(name=name,listoftext=listoftext,listofimage=listofimage , productive=productive , prog_category=category_id)
-=======
-    for name, listoftext, listofimage,productive,prog_category in reader:
-        ProgData = Programsdata(name=name,listoftext=listoftext,listofimage=listofimage, 
-                                productive=productive, prog_category=prog_category)
->>>>>>> f88e13869e80e8dfc4ee6c4be80e03218a76290d
         session.add(ProgData)
     session.commit()
 
@@ -144,20 +138,6 @@ def add_category(csv_path):
     
 # test code 
 
-<<<<<<< HEAD
-# AddingPrpramsData('database/prog.csv')
-'''
-programs = session.query(Programsdata).all()
-for program in programs:
-    print(program.name, program.id)
-updateOnScreenshoot(True, 1)
-today = datetime.date.today()
-seletect = selectday(today)
-print(seletect)
-listi = returnProgramImages()
-print(listi)
-'''
-=======
 #AddingProgramsData('database/myProg.csv')
 
 # programs = session.query(Programsdata).all()
@@ -175,14 +155,10 @@ print(listi)
 
 # listi = returnProgramImages()
 # print(listi)
->>>>>>> f88e13869e80e8dfc4ee6c4be80e03218a76290d
-# listi = returnProgramTexts()
-# print(listi)
-
 
 # add_category('database/category.csv')
-
+'''
 categ = session.query(Category).all()
 for cat in categ:
     print(cat.name, cat.prog)
-  
+  '''

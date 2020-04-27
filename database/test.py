@@ -66,13 +66,9 @@ l=[]
 l=l_str.split(',')
 print(l[0])
 '''
-c=Category(name="SOFTWARE DEV")
-session.add(c)
-c=Category(name="GRAPHIC DESIGN")
-session.add(c)
-session.commit()
+#add_category('category.csv')
+#AddingProgramsData('prog.csv')
 
-AddingPrpramsData('prog.csv')
 
 
 
