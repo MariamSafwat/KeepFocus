@@ -56,7 +56,7 @@ class Category(Base):
     __tablename__ = "Category"
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    prog=relationship("Programsdata")
+    prog = relationship("Programsdata")
 
 Base.metadata.create_all(engine)
 

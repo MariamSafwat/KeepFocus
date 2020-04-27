@@ -111,33 +111,48 @@ def updateOnScreenshoot(timerOn, program):
     session.commit()
 
 
-def AddingPrpramsData(csv_path):
+def AddingProgramsData(csv_path):
     '''
     this function reads data from csv file
     '''
     f = open(csv_path)
     reader = csv.reader(f)
     
-    for name, listoftext, listofimage,productive in reader:
-        ProgData = Programsdata(name=name,listoftext=listoftext,listofimage=listofimage , productive=productive)
+    for name, listoftext, listofimage,productive,prog_category in reader:
+        ProgData = Programsdata(name=name,listoftext=listoftext,listofimage=listofimage, 
+                                productive=productive, prog_category=prog_category)
         session.add(ProgData)
     session.commit()
 
+
+def add_category(csv_path):
+    '''
+    this function reads data from csv file
+    '''
+    f = open(csv_path)
+    reader = csv.reader(f)
+    
+    for name in reader:
+        category = Category(name=name[0])
+        session.add(category)
+    session.commit()
+    
 # test code 
 
-AddingPrpramsData('database/prog.csv')
+#AddingProgramsData('database/myProg.csv')
 
-programs = session.query(Programsdata).all()
-for program in programs:
-    print(program.name, program.id)
+# programs = session.query(Programsdata).all()
+# for program in programs:
+#     print(program.name, program.id)
 
-updateOnScreenshoot(True, 1)
-today = datetime.date.today()
-seletect = selectday(today)
-print(seletect)
-print(today)
-day = session.query(Day).order_by(Day.id.desc()).first()
-print(seletect)
+# updateOnScreenshoot(True, 1)
+# today = datetime.date.today()
+# seletect = selectday(today)
+# print(seletect)
+# print(today)
+# day = session.query(Day).order_by(Day.id.desc()).first()
+# print(seletect)
+
 
 # listi = returnProgramImages()
 # print(listi)
@@ -145,3 +160,9 @@ print(seletect)
 # print(listi)
 
 
+# add_category('database/category.csv')
+
+categ = session.query(Category).all()
+for cat in categ:
+    print(cat.name, cat.prog)
+  
