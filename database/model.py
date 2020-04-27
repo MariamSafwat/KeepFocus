@@ -49,23 +49,14 @@ class Programsdata(Base):
     listoftext = Column(String, nullable=False)# list of texts that related to each program
     listofimage = Column(String, nullable=False)# list of images that related to each program
     productive = Column(Integer, nullable=False)#input from user 
-<<<<<<< HEAD
     prog_category = Column(Integer,ForeignKey('category.id'))
     rel = relationship("Category",foreign_keys=[prog_category])    
-=======
-    prog_category = Column(String,ForeignKey('Category.id'), nullable=False)
-    
 
->>>>>>> f88e13869e80e8dfc4ee6c4be80e03218a76290d
+
 class Category(Base):
     __tablename__ = "Category"
     id = Column(Integer, primary_key=True)
-<<<<<<< HEAD
     name=Column(String, nullable=False)
-=======
-    name = Column(String, nullable=False)
-    prog = relationship("Programsdata")
 
->>>>>>> f88e13869e80e8dfc4ee6c4be80e03218a76290d
 Base.metadata.create_all(engine)
 
