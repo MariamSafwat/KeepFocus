@@ -3,11 +3,11 @@ pycharm,"PC,pycharm",..//images//pycharm,0,2
 sublime,"sublime Text,ST,st",..//images//sublime,0,2
 photoshop,"PS,photoshop",..//images//photoshop,0,3
 illustrator,"AI,Ai,st,ST",..//images//illustrator,0,3
-Egybest,"""Egybest,Comedy,Romantic,Drama,Horror,Film,Series,Action,Cartoon,movies""",../images/Egybest,0,4
-Netflix,"""movies,films,series,Netflix,Comedy,Horror,Romantic,Cartoon,drama""",../images/Netflix,0,4
-OLX,,../images/OLX,0,6
-Souq,,../images/Souq,0,6
-Amazon,,../images/Amazon,0,6
+Egybest,"Egybest,Comedy,Romantic,Drama,Horror,Film,Series,Action,Cartoon,movies",../images/Egybest,0,4
+Netflix,"movies,films,series,Netflix,Comedy,Horror,Romantic,Cartoon,drama",../images/Netflix,0,4
+OLX,"OLX,Buy,Sell,Account,Search,Sale,Rent,Help",../images/OLX,0,6
+Souq,"Souq,Account,Log in,Shopping Cart,Order,Buy,Sale,Market,Fashion,Customer service",../images/Souq,0,6
+Amazon,"Amazon,Account,Siign in,Shopping Cart,Order,Buy,Sale,Market,Fashion,Customer service,Sell,Help",../images/Amazon,0,6
 Youtube,"YouTube,Home,Trending,Subscriptions,Library,Recommended,All Recommendations,Latest YouTube posts,WATCH MORE,Up next,AUTOPLAY,ON TRENDING,SHARE,SAVE,views,SUBSCRIPE",../images/Youtube,0,7
 Google,"Google Search,I'm Feeling Lucky,Google offered in,Gmail,images",../images/Google,0,7
 Terminal,"$,Terminal,Windows PowerShell,Command Prompt,cmd",../images/Terminal,0,7
