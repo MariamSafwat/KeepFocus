@@ -1,3 +1,5 @@
-coursera  ,"  cours,certificate,courses",0,0
-Facebook  ,"  face,fb,FB",0,0
-Whatsapp  ,"  Whatsapp,wa,WA",0,0
+Egybest,"""Egybest,Comedy,Romantic,Drama,Horror,Film,Series,Action,Cartoon,movies""",../images/Egybest,0,ENTERTAINMENT
+Netflix,"""movies,films,series,Netflix,Comedy,Horror,Romantic,Cartoon,drama""",../images/Netflix,0,ENTERTAINMENT
+OLX,,../images/OLX,0,SHOPPING
+Souq,,../images/Souq,0,SHOPPING
+Amazon,,../images/Amazon,0,SHOPPING
