@@ -73,4 +73,10 @@ print(l[0])
 
 
 
+'''
+P = Programsdata(name="name",listoftext="listoftext",listofimage="listofimage" , productive=0 , prog_category=9)
+session.add(P)
+session.commit()
+'''
+
 

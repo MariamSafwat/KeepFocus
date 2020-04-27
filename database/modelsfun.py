@@ -135,6 +135,18 @@ def add_category(csv_path):
         category = Category(name=name[0])
         session.add(category)
     session.commit()
+
+def returnProgramsCategory(program):
+    '''
+    return the category fo any program
+    '''
+    categoryName=session.execute("Select category.name from category Inner join Programsdata ON Programsdata.name=:p and Programsdata.prog_category=category.id",{'p':program}).fetchall()[0]
+    return categoryName
+
+def returnCategoryID(category):
+    categoryID=session.execute("Select category.id from category WHERE category.name=:cat",{'cat':category}).fetchall()[0]
+    print(categoryID)
+
     
 # test code 
 
