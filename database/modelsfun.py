@@ -150,7 +150,7 @@ def returnCategoryID(category):
     
 # test code 
 
-add_category('database/category.csv')
+# add_category('database/category.csv')
 
-AddingProgramsData('database/prog.csv')
+# AddingProgramsData('database/prog.csv')
 

@@ -2,7 +2,7 @@ from PIL import Image
 import pytesseract
 
 
-def extract_txt(image_path):
+def extract_txt(image_path,progData):
 
     """it extracts the text from image and count the related words for each application
 
@@ -20,12 +20,11 @@ def extract_txt(image_path):
 
     # pass image into pytesseract module
     image_to_text = pytesseract.image_to_string(image, lang='eng')
-
-    num = count_occurrence (image_to_text , ['facebook',"Facebook","Pages","post", "Like","Share", "Comment"])
-    
+    print(image_to_text)
     found = {}
-    found["Facebook"] = num
-
+    for key , value in progData.items():
+        found[key] = count_occurrence(image_to_text,value)    
+    
     return found
 
 def count_occurrence(text,related_words):
@@ -42,11 +41,7 @@ def count_occurrence(text,related_words):
     """
 
     count = 0
-
     for word in related_words:
-
         count += text.count(word)
     
     return count
-
-print(extract_txt('images/Shot1.png'))

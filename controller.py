@@ -1,10 +1,14 @@
 from database.modelsfun import *
+from backend import *
 
 def main():
-    texts = returnProgramTexts()
-    
-    for key , value in texts.items():
-        print(f"{key: } {value}")
-        print("-----------------------------------")
+
+    progTexts = returnProgramTexts()
+    print(extract_txt('images/Shot4.png',progTexts))
+
+    progImgs = returnProgramImages()
+    print("---------------------------")
+    print(progImgs)
+
 
 main()
