@@ -51,6 +51,12 @@ class Day(Base):
 
 
 class Programsdata(Base):
+    NEUTRAL =0
+    PRODUCTIVE = 1
+    DISTRACTIVE = 2
+
+    STATUS = ((NEUTRAL,"Neutral"),(PRODUCTIVE,"Productive"),(DISTRACTIVE,"Distractive"))
+
     __tablename__ = "Programsdata"
     id = Column(Integer, primary_key=True)#id for each program
     name = Column(String, nullable=False)#name of the programe 

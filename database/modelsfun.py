@@ -148,6 +148,9 @@ def returnCategoryID(category):
     print(categoryID)
 
     
+def returnAllprogramStatus():
+    return dict(Programsdata.STATUS)
+
 # test code 
 
 # add_category('database/category.csv')
