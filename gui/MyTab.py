@@ -4,11 +4,11 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QComboBox, QLabel
 from PyQt5.QtCore import pyqtSlot , Qt, QSize
 from PyQt5.QtGui import QIcon , QFont, QPixmap, QPalette, QBrush, QColor
 
-from MyTable import MyTableWidget
-from myPie import PieChart
-from myProgBar import ProgressBar
-from myBar import BarChart
-from myTimer import Timer
+from gui.MyTable import MyTableWidget
+from gui.myPie import PieChart
+from gui.myProgBar import ProgressBar
+from gui.myBar import BarChart
+from gui.myTimer import Timer
 
 class MyTabWidget(QWidget):
     
