@@ -1,8 +1,8 @@
-vsCode,"['Visual Studio Code','vs code','VS Code']",..//images//vsCode,0,2
-pycharm,"['PC','pycharm']",..//images//pycharm,0,2
-sublime,"['Sublime Text','ST','st']",..//images//sublime,0,2
-photoshop,"['PS','photoshop']",..//images//photoshop,0,3
-illustrator,"['AI','Ai','st','ST']",..//images//illustrator,0,3
+VsCode,"['Visual Studio Code','vs code','VS Code']",..//images//vsCode,0,2
+PyCharm,"['PC','pycharm']",..//images//pycharm,0,2
+Sublime,"['Sublime Text','ST','st']",..//images//sublime,0,2
+Photoshop,"['PS','photoshop']",..//images//photoshop,0,3
+Illustrator,"['AI','Ai','st','ST']",..//images//illustrator,0,3
 Egybest,"['Egybest','Comedy','Romantic','Drama','Horror','Film','Series','Action','Cartoon','movies']",../images/Egybest,0,4
 Netflix,"['movies','films','series','Netflix','Comedy','Horror','Romantic','Cartoon','drama']",../images/Netflix,0,4
 OLX,"['OLX','Buy','Sell','Account','Sale','Rent','Help']",../images/OLX,0,6

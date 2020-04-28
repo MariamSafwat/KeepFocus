@@ -55,7 +55,7 @@ class Programsdata(Base):
     PRODUCTIVE = 1
     DISTRACTIVE = 2
 
-    STATUS = ((NEUTRAL,"Neutral"),(PRODUCTIVE,"Productive"),(DISTRACTIVE,"Distractive"))
+    STATUS = ((NEUTRAL,"NEUTRAL"),(PRODUCTIVE,"PRODUCTIVE"),(DISTRACTIVE,"DISTRACTIVE"))
 
     __tablename__ = "Programsdata"
     id = Column(Integer, primary_key=True)#id for each program

@@ -27,8 +27,8 @@ class MyTabWidget(QWidget):
     
 
         # Add tabs
-        self.tabs.addTab(self.dashboard,QtGui.QIcon("dashboard_grey.png"),"Dashboard")
-        self.tabs.addTab(self.options,QtGui.QIcon("settings_grey.png"),"Options")
+        self.tabs.addTab(self.dashboard,QtGui.QIcon("gui/dashboard_grey.png"),"Dashboard")
+        self.tabs.addTab(self.options,QtGui.QIcon("gui/settings_grey.png"),"Options")
         # Create option tab
         self.tabs.setTabToolTip(1,'Customize your controls')
 

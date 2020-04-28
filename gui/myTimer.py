@@ -68,7 +68,7 @@ class Timer(QWidget):
             self.currentTime = self.currentTime.addSecs(1)
        
         displayTxt = self.currentTime.toString('hh:mm:ss')
-        print(displayTxt)
+        #print(displayTxt)
         self.lbl.setText(displayTxt)
  
     def startProgress(self):

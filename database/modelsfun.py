@@ -137,11 +137,19 @@ def add_category(csv_path):
     session.commit()
 
 def returnProgramsCategory(program):
-    '''
-    return the category fo any program
-    '''
+
+    """return the category of the program
+
+    Args:
+        prog (str) : the name of the prog
+
+    Returns:
+        categoryName[0] (str) : the category of that prog
+
+    """
+
     categoryName=session.execute("Select category.name from category Inner join Programsdata ON Programsdata.name=:p and Programsdata.prog_category=category.id",{'p':program}).fetchall()[0]
-    return categoryName
+    return categoryName[0]
 
 def returnCategoryID(category):
     categoryID=session.execute("Select category.id from category WHERE category.name=:cat",{'cat':category}).fetchall()[0]
@@ -154,6 +162,5 @@ def returnAllprogramStatus():
 # test code 
 
 # add_category('database/category.csv')
-
 # AddingProgramsData('database/prog.csv')
 
