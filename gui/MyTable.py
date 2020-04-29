@@ -14,9 +14,13 @@ class MyTableWidget(QtWidgets.QWidget):
             prog_category = returnProgramsCategory(i.name)
             self.temp_database.append((i.name,prog_category,i.productive))
                    
-            
+        # hold current table index    
         self.cur_table = 0
         
+        # count no of lists changed 
+        self.l_cnt = 0
+
+        # Table Header
         self.table.setHorizontalHeaderLabels(
             'Activity|Catogery|Productivity'.split('|')) 
         self.table.horizontalHeader().setFixedHeight(50)
@@ -24,7 +28,7 @@ class MyTableWidget(QtWidgets.QWidget):
         # Disable columns resizing
         self.table.horizontalHeader().setSectionResizeMode (QHeaderView.Fixed);
         # Disable editing 
-        #self.table.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
+        self.table.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 
         self.table.setColumnWidth(0,300)   
         self.table.setColumnWidth(1,350)   
@@ -73,13 +77,14 @@ class MyTableWidget(QtWidgets.QWidget):
         self.table.verticalHeader().setVisible(False)
         self.table.setAlternatingRowColors(True)
         
-        ## Add Next, Prev buttons
+        ## Add Next, Prev, Save buttons
         # Next button
         self.nextButton = QPushButton('Next',self)
         self.nextButton.setStyleSheet("""
             QPushButton
             {
-                height:25px;
+                height:30px;
+                font-size:17px;
             }
             QPushButton:hover
             {
@@ -87,6 +92,7 @@ class MyTableWidget(QtWidgets.QWidget):
                 border:none;
             }
             """)
+        self.nextButton.setFixedWidth(200)
         self.nextButton.clicked.connect(self.nextContent)
 
 
@@ -95,7 +101,8 @@ class MyTableWidget(QtWidgets.QWidget):
         self.prevButton.setStyleSheet("""
             QPushButton
             {
-                height:25px;
+                height:30px;
+                font-size:17px;
             }
             QPushButton:hover
             {
@@ -103,9 +110,26 @@ class MyTableWidget(QtWidgets.QWidget):
                 border:none;
             }
             """)
+        self.prevButton.setFixedWidth(200)
         self.prevButton.setDisabled(True)
         self.prevButton.clicked.connect(self.prevContent)
         
+        # Save button 
+        self.saveButton = QPushButton('Save',self)
+        self.saveButton.setStyleSheet("""
+            QPushButton
+            {
+                height:30px;
+                font-size:18px;
+            }
+            QPushButton:hover
+            {
+                background-color:#148CD2;
+                border:none;
+            }
+            """)
+        self.saveButton.setDisabled(True)
+        self.saveButton.clicked.connect(self.save)
 
         layout = QVBoxLayout (self)
         layout.addWidget(self.table)
@@ -113,19 +137,20 @@ class MyTableWidget(QtWidgets.QWidget):
         layout.setContentsMargins(20,30,20,30)
         buttons = QHBoxLayout(self)
 
-        buttons.setSpacing (700)
-        buttons.setContentsMargins(0,0,30,80)
+        #buttons.setSpacing (700)
+        buttons.setContentsMargins(0,0,25,80)
         buttons.addWidget(self.prevButton)
+        buttons.addWidget(self.saveButton)
         buttons.addWidget(self.nextButton)
         layout.addLayout(buttons)
 
-        
-    
 
     def displayContent(self):
 
         self.table.clearContents()
         temp_database = self.temp_database[self.table.rowCount() * self.cur_table:]
+
+        prod_list = []
 
         for row in range(self.table.rowCount()):
             
@@ -136,12 +161,12 @@ class MyTableWidget(QtWidgets.QWidget):
             for col in range(self.table.columnCount()):                     
 
                 if col == 2:
-                    prod_list = QComboBox()
+                    prod_list.append(QComboBox())
                     # Fill in productivity list
                     for key , value in returnAllprogramStatus().items():
-                        prod_list.addItem(value)
+                        prod_list[row].addItem(value)
                     
-                    prod_list.setStyleSheet("""
+                    prod_list[row].setStyleSheet("""
                         QComboBox{
                             border:none;
                             background-color:transparent;
@@ -151,8 +176,14 @@ class MyTableWidget(QtWidgets.QWidget):
                         }
                     """)
                     # set default item to the item saved in database
-                    prod_list.setCurrentIndex(temp_database[row][col])
-                    self.table.setCellWidget(row, col, prod_list)
+                    prod_list[row].setCurrentIndex(temp_database[row][col])
+
+                    # Connect list change to boxChange signal that enables saveButton 
+                    prod_list[row].currentIndexChanged.connect(
+                        lambda row, combobox=prod_list[row]: self.boxChange(row, combobox) 
+                    )
+
+                    self.table.setCellWidget(row, col, prod_list[row])
 
                 else: 
                       
@@ -164,6 +195,9 @@ class MyTableWidget(QtWidgets.QWidget):
 
 
     def nextContent(self):
+        self.l_cnt = 0
+        self.saveButton.setEnabled(False)
+
         self.cur_table += 1
 
         if (self.cur_table+1) * self.table.rowCount() == len(self.temp_database) : 
@@ -175,6 +209,9 @@ class MyTableWidget(QtWidgets.QWidget):
     
 
     def prevContent(self):
+        self.l_cnt = 0
+        self.saveButton.setEnabled(False)
+
         self.cur_table -= 1
 
         if (self.cur_table+1) * self.table.rowCount() == self.table.rowCount() :
@@ -184,3 +221,20 @@ class MyTableWidget(QtWidgets.QWidget):
         self.nextButton.setDisabled(False)
         return
                 
+
+    def boxChange(self,row, combobox):
+        curIndex = combobox.currentIndex()
+        print(row,curIndex)
+
+        if self.temp_database[row][2] == curIndex:
+            self.l_cnt -= 1
+            if self.l_cnt == 0:
+                self.saveButton.setDisabled(True)
+        else:
+            self.l_cnt += 1
+            if self.l_cnt > 0:
+                self.saveButton.setDisabled(False)
+    
+    def save(self):
+        self.l_cnt = 0
+        self.saveButton.setDisabled(True)
