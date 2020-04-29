@@ -21,7 +21,6 @@ class MyTabWidget(QWidget):
         self.tabs.setStyleSheet("background:white")
         self.dashboard = QWidget()
         self.options = QWidget()
-        self.tabs.setMinimumSize(700,600)
 
         self.tabs.setIconSize(QSize(30,30))        
     
@@ -64,6 +63,7 @@ class MyTabWidget(QWidget):
         progBar = ProgressBar()
         barChart = BarChart()
         timer = Timer()
+
 
         dashboard_page.addWidget(timer)
         dashboard_page.addWidget(pieChart)

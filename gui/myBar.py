@@ -30,8 +30,8 @@ class BarChart(QtWidgets.QWidget):
         self.widget.setFixedSize(500,300)
         
     def create_barchart(self, data0, data1):
-        set0 = QBarSet('Productive')
-        set1 = QBarSet('Destructive')
+        set0 = QBarSet('PRODUCTIVE')
+        set1 = QBarSet('DESTRUCTIVE')
         
         set0.append(data0)
         set1.append(data1)

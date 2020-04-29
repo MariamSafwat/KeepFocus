@@ -1,6 +1,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets 
-from PyQt5.QtWidgets import QWidget,QComboBox, QPushButton, QHeaderView, QVBoxLayout,QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QComboBox, QPushButton, QHeaderView, QVBoxLayout, QHBoxLayout, QMessageBox
 from database.modelsfun import *
 
 class MyTableWidget(QtWidgets.QWidget):
@@ -150,7 +150,7 @@ class MyTableWidget(QtWidgets.QWidget):
         self.table.clearContents()
         temp_database = self.temp_database[self.table.rowCount() * self.cur_table:]
 
-        prod_list = []
+        self.prod_list = []
 
         for row in range(self.table.rowCount()):
             
@@ -161,12 +161,12 @@ class MyTableWidget(QtWidgets.QWidget):
             for col in range(self.table.columnCount()):                     
 
                 if col == 2:
-                    prod_list.append(QComboBox())
+                    self.prod_list.append(QComboBox())
                     # Fill in productivity list
                     for key , value in returnAllprogramStatus().items():
-                        prod_list[row].addItem(value)
+                        self.prod_list[row].addItem(value)
                     
-                    prod_list[row].setStyleSheet("""
+                    self.prod_list[row].setStyleSheet("""
                         QComboBox{
                             border:none;
                             background-color:transparent;
@@ -176,14 +176,14 @@ class MyTableWidget(QtWidgets.QWidget):
                         }
                     """)
                     # set default item to the item saved in database
-                    prod_list[row].setCurrentIndex(temp_database[row][col])
+                    self.prod_list[row].setCurrentIndex(temp_database[row][col])
 
                     # Connect list change to boxChange signal that enables saveButton 
-                    prod_list[row].currentIndexChanged.connect(
-                        lambda row, combobox=prod_list[row]: self.boxChange(row, combobox) 
+                    self.prod_list[row].currentIndexChanged.connect(
+                        lambda index, combobox=self.prod_list[row]: self.boxChange(self.prod_list.index(combobox), combobox) 
                     )
 
-                    self.table.setCellWidget(row, col, prod_list[row])
+                    self.table.setCellWidget(row, col, self.prod_list[row])
 
                 else: 
                       
@@ -195,6 +195,13 @@ class MyTableWidget(QtWidgets.QWidget):
 
 
     def nextContent(self):
+        
+        # if there are unsaved changes
+        if self.saveButton.isEnabled():
+            buttonReply = QMessageBox.question(self, 'Warning message', "Your changes will be lost \n Do you want to continue without saving?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if buttonReply == QMessageBox.No:
+                return
+
         self.l_cnt = 0
         self.saveButton.setEnabled(False)
 
@@ -209,6 +216,12 @@ class MyTableWidget(QtWidgets.QWidget):
     
 
     def prevContent(self):
+        # if there are unsaved changes
+        if self.saveButton.isEnabled():
+            buttonReply = QMessageBox.question(self, 'Warning message', "Your changes will be lost \n Do you want to continue without saving?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if buttonReply == QMessageBox.No:
+                return
+                
         self.l_cnt = 0
         self.saveButton.setEnabled(False)
 
@@ -224,7 +237,7 @@ class MyTableWidget(QtWidgets.QWidget):
 
     def boxChange(self,row, combobox):
         curIndex = combobox.currentIndex()
-        print(row,curIndex)
+        row = self.cur_table * self.table.rowCount() + row
 
         if self.temp_database[row][2] == curIndex:
             self.l_cnt -= 1
@@ -234,7 +247,30 @@ class MyTableWidget(QtWidgets.QWidget):
             self.l_cnt += 1
             if self.l_cnt > 0:
                 self.saveButton.setDisabled(False)
-    
+
     def save(self):
+
         self.l_cnt = 0
         self.saveButton.setDisabled(True)
+
+        start = self.cur_table * self.table.rowCount()
+        end = self.cur_table * self.table.rowCount() + self.table.rowCount()
+
+        l_index = 0
+        for row in range(start,end):
+            if (row == len(self.database)):
+                break
+            prog = self.database[row]
+            prog.productive = self.prod_list[l_index].currentIndex()
+            l_index += 1
+        session.commit()
+        self.updateTable()
+
+    def updateTable(self):
+        self.database = session.query(Programsdata).all()
+        row = 0
+        for i in self.database:
+            prog_category = returnProgramsCategory(i.name)
+            self.temp_database[row] = (i.name,prog_category,i.productive)
+            row += 1
+                

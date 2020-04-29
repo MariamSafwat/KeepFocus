@@ -12,6 +12,7 @@ class App(QMainWindow):
         self.tab_widget = MyTabWidget(self)
         self.setCentralWidget(self.tab_widget)
         self.showMaximized()
+        self.setMinimumSize(700,650)
         self.setContentsMargins(0, 0, 0, 0);
         self.setStyleSheet("background-color:#22282d;")
 

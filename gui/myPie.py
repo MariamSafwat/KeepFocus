@@ -2,7 +2,7 @@ from PyQt5 import QtGui , QtWidgets
 from PyQt5.QtChart import QChart, QChartView, QPieSeries, QPieSlice
 from PyQt5.QtGui import QPainter, QPen
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QVBoxLayout 
+from PyQt5.QtWidgets import QWidget, QHBoxLayout 
 
 class PieChart(QtWidgets.QWidget):
     def __init__(self):
@@ -20,8 +20,8 @@ class PieChart(QtWidgets.QWidget):
         
         self.create_piechart(data)
 
-        layout = QVBoxLayout (self)  
-        layout.setContentsMargins(5,5,50,30)      
+        layout = QHBoxLayout (self)  
+        layout.setContentsMargins(5,5,50,5)      
         layout.addWidget(self.chartview)
 
         self.setLayout(layout)
