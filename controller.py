@@ -38,6 +38,6 @@ def Classifier():
 
     orderedTuplesOfTuple = sorted(sum_dic.items() ,  key=lambda x: -x[1]  )
     most_Sum = orderedTuplesOfImg[0][0]
-
+    updateOnScreenshoot(True,1)
     
     return most_Sum

@@ -3,6 +3,8 @@ from PyQt5.QtChart import QChart, QChartView, QValueAxis, QBarCategoryAxis, QBar
 from PyQt5.QtGui import QPainter, QPen
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout 
+from database.modelsfun import *
+
 
 class BarChart(QtWidgets.QWidget):
     def __init__(self):

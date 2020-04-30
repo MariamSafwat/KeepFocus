@@ -19,7 +19,7 @@ def selectday(sdate):
         category_dic[name] = programs[program]
     
     final_dic['date']=sdate
-    final_dic['allPrograms '] = category_dic
+    final_dic['allPrograms'] = category_dic
     final_dic['totalTime'] = day.totalTime
     final_dic['timerOnTime'] = day.timerOnTime
     return final_dic

@@ -4,7 +4,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from gui.MyTab import MyTabWidget
 
 class App(QMainWindow):
-
     def __init__(self):
         super().__init__()
         self.title = 'KeepFocus'
@@ -16,7 +15,7 @@ class App(QMainWindow):
         self.setContentsMargins(0, 0, 0, 0);
         self.setStyleSheet("background-color:#22282d;")
 
-        
+
 if __name__ == '__main__':
         
     QApplication.setStyle("Fusion")
