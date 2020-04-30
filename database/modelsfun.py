@@ -15,7 +15,6 @@ def selectday(sdate):
 
     for program in programs:
         name = session.query(Programsdata).get(program).name
-        print(programs[program])
         category_dic[name] = programs[program]
     
     final_dic['date']=sdate
@@ -153,14 +152,13 @@ def returnProgramsCategory(program):
 
 def returnCategoryID(category):
     categoryID=session.execute("Select category.id from category WHERE category.name=:cat",{'cat':category}).fetchall()[0]
-    print(categoryID)
-
+    return categoryID
     
 def returnAllprogramStatus():
     return dict(Programsdata.STATUS)
 
 # test code 
 
-# add_category('database/category.csv')
-# AddingProgramsData('database/prog.csv')
+add_category('database/category.csv')
+AddingProgramsData('database/prog.csv')
 

@@ -20,7 +20,6 @@ def extract_txt(image_path,progData):
 
     # pass image into pytesseract module
     image_to_text = pytesseract.image_to_string(image, lang='eng')
-    print(image_to_text)
     found = {}
     for key , value in progData.items():
         found[key] = count_occurrence(image_to_text,value)    

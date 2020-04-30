@@ -3,20 +3,20 @@ from backend import *
 from backend.system_api import *
 
 
-def TakeDecision(timerison) :
-    last10min = session.query(Programsdata).order_by(a.id.desc()).limit(10)
+def TakeDecision() :
+    last10min = session.query(Statistics).order_by(a.id.desc()).limit(10)
     
     productiveCount = 0
     for min in last10min:
-        if min.productive == Programsdata.DISTRACTIVE:
+        if min.productive == Programsdata.DISTRACTIVE and min.timerison:
             productiveCount +=1
     
-    if productiveCount > 6 and timerison:
+    if productiveCount > 6:
         sendNotification("Keep Focus","Shouldn't you be working !?")
 
 
 
-def Classifier():
+def Classifier(timerison):
     screenshot = takeScreenshot()
     screenshot.save('images/current.png')
 
@@ -38,6 +38,7 @@ def Classifier():
 
     orderedTuplesOfTuple = sorted(sum_dic.items() ,  key=lambda x: -x[1]  )
     most_Sum = orderedTuplesOfImg[0][0]
-    updateOnScreenshoot(True,1)
     
-    return most_Sum
+    updateOnScreenshoot(timerison,most_Sum)
+    TakeDecision()
+    

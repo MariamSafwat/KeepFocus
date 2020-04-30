@@ -2,7 +2,9 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QFormLayout, QLabel, QPushButton
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QTimer, QTime, Qt
- 
+from controller import Classifier
+
+
 class Timer(QWidget):
     def __init__(self):
         super().__init__()
@@ -53,6 +55,7 @@ class Timer(QWidget):
         self.btnStart.clicked.connect(self.startProgress) 
 
         self.showTime()
+        self.timerStatus = False
 
         line.addRow(self.btnStart,self.msg)
 
@@ -62,19 +65,31 @@ class Timer(QWidget):
         self.widget.setLayout(layout)
         self.widget.setFixedSize(400,200)
 
+
+        Classifiertimer = QTimer(self)
+        Classifiertimer.timeout.connect(self.ClassifierRunner)
+        Classifiertimer.start(5000) # update every second
+
+
     def showTime(self):
-    
         if self.btnStart.text() == 'Stop':
             self.currentTime = self.currentTime.addSecs(1)
-       
-        displayTxt = self.currentTime.toString('hh:mm:ss')
-        #print(displayTxt)
-        self.lbl.setText(displayTxt)
- 
+            displayTxt = self.currentTime.toString('hh:mm:ss')
+            self.lbl.setText(displayTxt)
+        else:
+            displayTxt = self.currentTime.toString('hh:mm:ss')
+            self.lbl.setText(displayTxt)
+
     def startProgress(self):
         if self.btnStart.text() == 'Start':
             self.btnStart.setText('Stop')
+            self.timerStatus = True
         else:
             self.btnStart.setText('Start')
-            #self.currentTime = QTime(0,0,0)
-
+            self.currentTime = QTime(0,0,0)
+            self.timerStatus = False
+            
+    def ClassifierRunner(self):
+        print("/////////////////////////////////////////////////////////////////")
+        Classifier(self.timerStatus)
+        print('??????????????????????????????????????????????????????????????????')

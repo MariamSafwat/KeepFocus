@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import QtCore, QtGui, QtWidgets 
 from gui.MyTab import MyTabWidget
+from database.modelsfun import *
 
 class App(QMainWindow):
     def __init__(self):
@@ -17,7 +18,7 @@ class App(QMainWindow):
 
 
 if __name__ == '__main__':
-        
+    checkDay()
     QApplication.setStyle("Fusion")
     app = QApplication(sys.argv)
     ex = App()
