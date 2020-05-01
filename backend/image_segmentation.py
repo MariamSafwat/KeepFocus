@@ -34,7 +34,7 @@ def getmatches(img_path, progImgs):
             leng = 0
 
             # perform SIFT feature detection and description
-            sift = cv2.xfeatures2d_pipSIFT.create()
+            sift=cv2.xfeatures2d_SIFT.create()
             kp0, des0 = sift.detectAndCompute(i, None)
             kp1, des1 = sift.detectAndCompute(img1, None)
 
