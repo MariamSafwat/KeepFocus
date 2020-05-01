@@ -68,7 +68,7 @@ class Timer(QWidget):
 
         Classifiertimer = QTimer(self)
         Classifiertimer.timeout.connect(self.ClassifierRunner)
-        Classifiertimer.start(5000) # update every second
+        Classifiertimer.start(60*1000) # update every minute
 
 
     def showTime(self):

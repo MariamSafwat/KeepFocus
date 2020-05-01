@@ -22,7 +22,7 @@ class PieChart(QtWidgets.QWidget):
 
         timer = QTimer(self)
         timer.timeout.connect(self.redraw)
-        timer.start(5*60*1000) # update every second
+        timer.start(5*60*1000) # update every 5 minutes
 
         layout = QHBoxLayout (self)  
         layout.setContentsMargins(5,5,50,5)      
@@ -43,7 +43,10 @@ class PieChart(QtWidgets.QWidget):
         for name, value in catogeries.items():
             tot_val += value
 
+        tot_val = max(tot_val,1)
         for name, value in catogeries.items():
+            if value == 0:
+                value = 0.2
             _slice = series.append(name, 100*(value/tot_val))
             _slice.setLabelVisible(True) # can be removed if unnecessary
             

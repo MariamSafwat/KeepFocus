@@ -39,7 +39,7 @@ class ProgressBar(QtWidgets.QWidget):
 
         timer = QTimer(self)
         timer.timeout.connect(self.updateOnTime)
-        timer.start(1000) # update every second
+        timer.start(60*1000) # update every minute
 
         self.widget.setLayout(self.line)      
         self.widget.setFixedSize(400,300)
