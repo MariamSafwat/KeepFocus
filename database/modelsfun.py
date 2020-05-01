@@ -9,18 +9,30 @@ def selectday(sdate):
     day =session.execute("SELECT * from Day where date=:d",{'d':sdate}).first()
     programs_dic = {}
     final_dic = {}
-    category_dic  = {}
+    progarams_dic  = {}
     programs = day.allPrograms
     programs = ast.literal_eval(programs)
 
+    allcat = session.query(Category).all()
+    allCategory = {}
+    for cat in  allcat:
+        allCategory[cat.name] = 0
+        
+
     for program in programs:
-        name = session.query(Programsdata).get(program).name
-        category_dic[name] = programs[program]
+        prog = session.query(Programsdata).get(program)
+
+        progarams_dic[prog.name] = programs[program]
+     
+        cat = session.query(Category).get(prog.prog_category)
+        allCategory[cat.name] += programs[program]
+
     
     final_dic['date']=sdate
-    final_dic['allPrograms'] = category_dic
+    final_dic['allPrograms'] = progarams_dic
     final_dic['totalTime'] = day.totalTime
     final_dic['timerOnTime'] = day.timerOnTime
+    final_dic['allCategory'] = allCategory
     return final_dic
     
 
@@ -159,6 +171,6 @@ def returnAllprogramStatus():
 
 # test code 
 
-add_category('database/category.csv')
-AddingProgramsData('database/prog.csv')
+# add_category('database/category.csv')
+# AddingProgramsData('database/prog.csv')
 

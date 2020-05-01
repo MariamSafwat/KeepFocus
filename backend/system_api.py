@@ -3,7 +3,7 @@ import platform
 
 # import linux module
 if platform.platform().startswith('Linux'):
-     import notify2
+    import notify2
 #import win10 module
 elif  platform.platform().startswith('Windows') and platform.release() == '10':
     from win10toast import ToastNotifier

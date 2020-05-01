@@ -10,8 +10,8 @@ Souq,"['Souq','Account','Log in','Shopping Cart','Order','Buy','Sale,Market','Fa
 Amazon,"['Amazon','Account','Sign in','Shopping Cart','Order','Buy','Sale','Market','Fashion','Customer service','Sell','Help']",../images/Amazon,0,6
 Youtube,"['YouTube','Home','Trending','Subscriptions','Library','Recommended','All Recommendations','Latest YouTube posts','WATCH MORE','Up next','AUTOPLAY','ON TRENDING','LIKE','DISLIKE','SHARE','SAVE','views','SUBSCRIPE']",../images/Youtube,0,7
 Google,"['Google Search','I\'m Feeling Lucky','Google offered in','Gmail','images']",../images/Google,0,7
-Terminal,"['$','Terminal','Windows PowerShell','Command Prompt','cmd']",../images/Terminal,0,7
-Facebook,"['facebook','Facebook','Pages','post', 'Like','Share', 'Comment']",../images/Facebook,0,1
+Terminal,"['$',':~$',Terminal','Windows PowerShell','Command Prompt','cmd']",../images/Terminal,0,7
+Facebook,"['facebook','Facebook','Pages','post', 'Like','Share', 'Comment','Active now','Shortcuts']",../images/Facebook,0,1
 WhatsApp,"['WhatsApp','chat','message','group', 'Starred','Status', 'contacts']",../images/WhatsApp,0,1
 Instagram,"['Instagram','Stories','likes','comments', 'Unfollw','followers', 'following','IGTV','TAGGED']",../images/Instagram,0,1
 Coursera,"['Coursera','Course','Certificate','Lesson', 'Discussion Forums','Grades', 'deadline']",../images/Coursera,0,5
