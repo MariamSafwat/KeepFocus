@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QAction, QDialog, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QMainWindow, QApplication, QAction, QDialog, QVBoxLayout, QLabel, QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets 
 from gui.MyTab import MyTabWidget
 from database.modelsfun import *
@@ -23,7 +23,7 @@ class App(QMainWindow):
         exitButton = QAction('Exit', self)
         exitButton.setShortcut('Ctrl+Q')
         exitButton.setStatusTip('Exit application')
-        exitButton.triggered.connect(self.close)
+        exitButton.triggered.connect(self.quit)
         # About button
         aboutButton = QAction('About', self)
         aboutButton.setShortcut('Ctrl+B')
@@ -69,7 +69,12 @@ It does so by taking a screenshot of the screen every\nfixed interval and using 
         self._action = QAction("Hide")
         self._action.triggered.connect(self.hideit)
         
+        self.quit_action = QAction("Quit")
+        self.quit_action.triggered.connect(self.quit)
+
         self._menu.addAction(self._action)
+        self._menu.addAction(self.quit_action)
+
         self._tray.setContextMenu(self._menu)
 
 
@@ -77,8 +82,14 @@ It does so by taking a screenshot of the screen every\nfixed interval and using 
         self.setVisible(False)
         self._action = QAction("Show")
         self._action.triggered.connect(self.Showit)
+
+        self.quit_action = QAction("Quit")
+        self.quit_action.triggered.connect(self.quit)
+
         self._menu.clear()
         self._menu.addAction(self._action)
+        self._menu.addAction(self.quit_action)
+
         self._tray.setContextMenu(self._menu)
 
 
@@ -88,9 +99,22 @@ It does so by taking a screenshot of the screen every\nfixed interval and using 
         self._action = QAction("Hide")
         self._action.triggered.connect(self.hideit)
         self._menu.clear()
+
+        self.quit_action = QAction("Quit")
+        self.quit_action.triggered.connect(self.quit)
+
+
         self._menu.addAction(self._action)
+        self._menu.addAction(self.quit_action)
+
         self._tray.setContextMenu(self._menu)
 
+    def closeEvent(self, event):
+        event.ignore()
+        self.hideit()
+
+    def quit(self):
+        app.quit()
 
 
 if __name__ == '__main__':
