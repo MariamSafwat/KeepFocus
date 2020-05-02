@@ -11,7 +11,7 @@ def TakeDecision() :
         if int(min.productive) == Programsdata.DISTRACTIVE and min.timer == True:
             productiveCount +=1
     
-    if productiveCount > 6:
+    if productiveCount == 6:
         sendNotification("Keep Focus","Shouldn't you be working !?")
 
 
@@ -25,34 +25,34 @@ def Classifier(timerison):
     # print(text_dic)
     # print("--------------------------------------")
 
-    #normalize(text_dic)
+    normalize(text_dic)
 
     # print(text_dic)
     # print("--------------------------------------")
 
-    # progImgs = returnProgramImages()
-    # img_dic = getmatches('images/current.png', progImgs)
+    progImgs = returnProgramImages()
+    img_dic = getmatches('images/current.png', progImgs)
     # print("--------------------------------------")
     # print(img_dic)
     # print("--------------------------------------")
 
-    # normalize(img_dic)
+    normalize(img_dic)
 
     # print(img_dic)
     # print("--------------------------------------")
 
-    # sum_dic = {}
-    # for key in text_dic.keys():
-    #     sum_dic[key] = text_dic[key] + img_dic[key]
+    sum_dic = {}
+    for key in text_dic.keys():
+        sum_dic[key] = text_dic[key] + img_dic[key]
 
     orderedTuplesOfText = sorted(text_dic.items() ,  key=lambda x: -x[1]  )
     most_text = orderedTuplesOfText[0][0]
 
-    # orderedTuplesOfImg = sorted(img_dic.items() ,  key=lambda x: -x[1]  )
-    # most_img = orderedTuplesOfImg[0][0]
+    orderedTuplesOfImg = sorted(img_dic.items() ,  key=lambda x: -x[1]  )
+    most_img = orderedTuplesOfImg[0][0]
 
-    # orderedTuplesOfTuple = sorted(sum_dic.items() ,  key=lambda x: -x[1]  )
-    # most_Sum = orderedTuplesOfImg[0][0]
+    orderedTuplesOfTuple = sorted(sum_dic.items() ,  key=lambda x: -x[1]  )
+    most_Sum = orderedTuplesOfImg[0][0]
 
     updateOnScreenshoot(timerison,most_text)
     TakeDecision()
