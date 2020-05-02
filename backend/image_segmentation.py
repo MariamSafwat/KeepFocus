@@ -54,7 +54,7 @@ def getmatches(img_path, progImgs):
                     mask_matches[i] = [1, 0]
                     leng += 1
             length.append(leng)
-        progs[key] = np.max(length)
+        progs[key] = np.sum(length)
 
     return progs
 
