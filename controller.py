@@ -4,11 +4,11 @@ from backend.system_api import *
 
 
 def TakeDecision() :
-    last10min = session.query(Statistics).order_by(Statistics.id.desc()).limit(10)
+    last10min = session.query(Statistics).order_by(Statistics.id.desc()).limit(6)
     
     productiveCount = 0
     for min in last10min:
-        if min.productive == Programsdata.DISTRACTIVE and min.timerison:
+        if int(min.productive) == Programsdata.DISTRACTIVE and min.timer == True:
             productiveCount +=1
     
     if productiveCount > 6:
