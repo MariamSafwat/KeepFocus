@@ -4,7 +4,8 @@ from PyQt5.QtGui import QPainter, QPen
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout 
 from database.modelsfun import *
-
+from datetime import date,timedelta
+from database.modelsfun import *
 
 class BarChart(QtWidgets.QWidget):
     def __init__(self):
@@ -19,8 +20,23 @@ class BarChart(QtWidgets.QWidget):
                     }
         """)
         
-        data0 = [1,6,3,2,8,6,7]
-        data1 = [5,8,2,6,1,2,4]
+
+        today = datetime.date.today()
+        days = []
+        today = datetime.date.today()
+        data0 = []
+        data1 = []
+        for single_date in (today + timedelta(n) for n in range(7)):
+            try:
+                current = selectday(single_date)
+                data0.append(current['distructive_time']/ current['totalTime'] * 100)
+                data1.append(current['productive_time']/ current['totalTime'] * 100)
+
+            except:
+                data0.append(0)
+                data1.append(0)
+
+
         
         
         self.create_barchart(data0,data1)
@@ -48,13 +64,19 @@ class BarChart(QtWidgets.QWidget):
         chart.setTitle('Weekly Bar Chart')
         chart.setAnimationOptions(QChart.SeriesAnimations)
         
-        days = ('Mon', 'Teu', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')
+
+        today = datetime.date.today()
+        days = []
+        today = datetime.date.today()
+        for single_date in (today + timedelta(n) for n in range(7)):
+            days.append(single_date.strftime("%AAA"))
+
         
         axisX = QBarCategoryAxis()
         axisX.append(days)
         
         axisY = QValueAxis()
-        axisY.setRange(0, 24)
+        axisY.setRange(0, 100)
         
         chart.addAxis(axisX, Qt.AlignBottom)
         chart.addAxis(axisY, Qt.AlignLeft)

@@ -18,6 +18,8 @@ def selectday(sdate):
     for cat in  allcat:
         allCategory[cat.name] = 0
         
+    productive_time = 0 
+    distructive_time = 0
 
     for program in programs:
         prog = session.query(Programsdata).get(program)
@@ -26,6 +28,11 @@ def selectday(sdate):
      
         cat = session.query(Category).get(prog.prog_category)
         allCategory[cat.name] += programs[program]
+        
+        if prog.productive == Programsdata.PRODUCTIVE:
+            productive_time += programs[program]
+        elif prog.productive == Programsdata.DISTRACTIVE:
+            distructive_time += programs[program]
 
     
     final_dic['date']=sdate
@@ -33,6 +40,9 @@ def selectday(sdate):
     final_dic['totalTime'] = day.totalTime
     final_dic['timerOnTime'] = day.timerOnTime
     final_dic['allCategory'] = allCategory
+    final_dic['productive_time'] = productive_time
+    final_dic['distructive_time'] = distructive_time
+
     return final_dic
     
 
