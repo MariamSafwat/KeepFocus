@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QAction, QDialog, QVBoxLa
 from PyQt5 import QtCore, QtGui, QtWidgets 
 from gui.MyTab import MyTabWidget
 from database.modelsfun import *
-
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
 class App(QMainWindow):
     def __init__(self):
@@ -55,9 +56,51 @@ It does so by taking a screenshot of the screen every\nfixed interval and using 
         aboutDialog.setLayout(layout);
         aboutDialog.show()        
 
+
+
+    def init_tray(self):
+
+        icon = QIcon("icon.png")
+        self._tray = QSystemTrayIcon()
+        self._tray.setIcon(icon)
+        self._tray.setVisible(True)
+
+        self._menu = QMenu()
+        self._action = QAction("Hide")
+        self._action.triggered.connect(self.hideit)
+        
+        self._menu.addAction(self._action)
+        self._tray.setContextMenu(self._menu)
+
+
+    def hideit(self):
+        self.setVisible(False)
+        self._action = QAction("Show")
+        self._action.triggered.connect(self.Showit)
+        self._menu.clear()
+        self._menu.addAction(self._action)
+        self._tray.setContextMenu(self._menu)
+
+
+
+    def Showit(self):
+        self.setVisible(True)
+        self._action = QAction("Hide")
+        self._action.triggered.connect(self.hideit)
+        self._menu.clear()
+        self._menu.addAction(self._action)
+        self._tray.setContextMenu(self._menu)
+
+
+
 if __name__ == '__main__':
     checkDay()
     QApplication.setStyle("Fusion")
     app = QApplication(sys.argv)
+
+
     ex = App()
+    ex.init_tray()
+
+
     sys.exit(app.exec_())
