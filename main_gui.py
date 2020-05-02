@@ -60,7 +60,7 @@ It does so by taking a screenshot of the screen every\nfixed interval and using 
 
     def init_tray(self):
 
-        icon = QIcon("icon.png")
+        icon = QIcon("keepfocus_icon.png")
         self._tray = QSystemTrayIcon()
         self._tray.setIcon(icon)
         self._tray.setVisible(True)
