@@ -82,7 +82,7 @@ class Tutorial(QWidget):
                 finishButton.clicked.connect(finish)                
                 
         def finish(event):
-                sys.exit()
+                self.close()
                 
 
         prevButton = QPushButton("Prev")
