@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QAction, QDialog, QVBoxLayout, QLabel, QMessageBox
 from PyQt5 import QtCore, QtGui, QtWidgets 
 from gui.MyTab import MyTabWidget
+from gui.firstTimeTut import Tutorial
 from database.modelsfun import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -10,7 +11,9 @@ class App(QMainWindow):
     def __init__(self):
         super().__init__()
         self.title = 'KeepFocus'
-        self.setWindowTitle(self.title)        
+        self.setWindowTitle(self.title)
+        self.ft = Tutorial()
+        self.ft.show()
         self.tab_widget = MyTabWidget(self)
         self.setCentralWidget(self.tab_widget)
 

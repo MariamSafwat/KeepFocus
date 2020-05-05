@@ -147,22 +147,4 @@ class Tutorial(QWidget):
         self.show()
         
         
-if __name__ == '__main__':
-    
-    app = QApplication(sys.argv)
-    
-    def strt():
-        splash.close()
-        ex = Tutorial()
-        sys.exit(app.exec_())
-        
-        
-    splash_pix = QtGui.QPixmap('logo.jpg')
-    splash_pix1 = splash_pix.scaled(550, 550, QtCore.Qt.KeepAspectRatio)
-    splash = QSplashScreen(splash_pix1, QtCore.Qt.WindowStaysOnTopHint)
-    splash.show()
-
-    QtCore.QTimer.singleShot(3000, strt)
-    
-    
     
