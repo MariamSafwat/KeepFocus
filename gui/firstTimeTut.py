@@ -83,6 +83,10 @@ class Tutorial(QWidget):
                 
         def finish(event):
                 self.close()
+
+        def dntshow(checked):
+            if Qt.Checked == checked:
+                dontshow = True
                 
 
         prevButton = QPushButton("Prev")
@@ -100,13 +104,17 @@ class Tutorial(QWidget):
         prevButton.setEnabled(False)
         finishButton.setEnabled(False)
         
+        cb = QCheckBox("Don't show this again")
         
         hbox = QHBoxLayout()
         hbox.addStretch(1)
+        hbox.addWidget(cb)
+        hbox.addStretch(5)
         hbox.addWidget(prevButton)
         hbox.addWidget(nextButton)
         hbox.addWidget(finishButton)
-        
+
+        cb.stateChanged.connect(dntshow)
         
         vbox = QVBoxLayout()
         
