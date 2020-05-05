@@ -12,8 +12,13 @@ class App(QMainWindow):
         super().__init__()
         self.title = 'KeepFocus'
         self.setWindowTitle(self.title)
-        self.ft = Tutorial()
-        self.ft.show()
+        
+        show = ShowTutorial()
+        if show is True:
+            self.ft = Tutorial()
+            self.ft.show()
+        
+            
         self.tab_widget = MyTabWidget(self)
         self.setCentralWidget(self.tab_widget)
 

@@ -18,7 +18,7 @@ class Tutorial(QWidget):
         txt2 = "<html><head/><body><p>Whenever you are about to start working, go to the Dashboard </p><p>and press Start, KeepFocus will then start keeping track of your </p><p>activities to help you stay Productive.</p></body></html>"
         txt3 = "<html><head/><body><p>From the Pie Chart you can view all Categories </p><p>and see which one you spend most of your time on</p></body></html>"
         txt4 = "<html><head/><body><p>The Weekly Bar Chart shows you how much Productive </p><p>and how much Destructive time you had each day of the week</p></body></html>"
-        txt5 = "<html><head/><body><p>If you need more Details to know which Program is Blocking </p><p>your Productivity, the Progress Bars will show you the Percentage </p><p>of Time spent on each Program</p></body></html>"
+        txt5 = "<html><head/><body><p>If you need more Details to know which Program is Blocking </p><p>your Productivity, the Progress Bars will show you Percentage </p><p>of Time spent on each Program</p></body></html>"
 
         img1 = QtGui.QPixmap('1.jpeg')
         img2 = QtGui.QPixmap('2.jpeg')
@@ -84,9 +84,6 @@ class Tutorial(QWidget):
         def finish(event):
                 self.close()
 
-        def dntshow(checked):
-            if Qt.Checked == checked:
-                dontshow = True
                 
 
         prevButton = QPushButton("Prev")
@@ -104,17 +101,17 @@ class Tutorial(QWidget):
         prevButton.setEnabled(False)
         finishButton.setEnabled(False)
         
-        cb = QCheckBox("Don't show this again")
+        #cb = QCheckBox("Don't show this again")
         
         hbox = QHBoxLayout()
         hbox.addStretch(1)
-        hbox.addWidget(cb)
-        hbox.addStretch(5)
+        #hbox.addWidget(cb)
+        #hbox.addStretch(5)
         hbox.addWidget(prevButton)
         hbox.addWidget(nextButton)
         hbox.addWidget(finishButton)
 
-        cb.stateChanged.connect(dntshow)
+        #cb.stateChanged.connect(dntshow)
         
         vbox = QVBoxLayout()
         

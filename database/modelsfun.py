@@ -184,3 +184,15 @@ def returnAllprogramStatus():
 # add_category('database/category.csv')
 # AddingProgramsData('database/prog.csv')
 
+def ShowTutorial():
+    '''
+    This function checks if still no statistics saved
+    when ststistics added stop showing the first time tutorial
+    '''
+    check = session.execute("SELECT * from Statistics").fetchall()
+    if not check: #table is still empty
+        return True
+    else: 
+        return False
+
+        
