@@ -125,9 +125,15 @@ if __name__ == '__main__':
     QApplication.setStyle("Fusion")
     app = QApplication(sys.argv)
 
+    def strt():
+        splash.close()
+        ex = App()
+        ex.init_tray()
+        sys.exit(app.exec_())
 
-    ex = App()
-    ex.init_tray()
+    splash_pix = QtGui.QPixmap('logo.jpg')
+    splash_pix1 = splash_pix.scaled(550, 550, QtCore.Qt.KeepAspectRatio)
+    splash = QSplashScreen(splash_pix1, QtCore.Qt.WindowStaysOnTopHint)
+    splash.show()
 
-
-    sys.exit(app.exec_())
+    QtCore.QTimer.singleShot(3000, strt)
