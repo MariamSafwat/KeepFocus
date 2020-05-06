@@ -16,11 +16,27 @@ picture of how you spend your day.
 4. GUI: PyQt5
 
 ## prerequisite
+### Installations for pytesseract :
+ #### On Linux
+```python
+sudo apt-get update
+sudo apt-get install tesseract-ocr
+sudo apt-get install libtesseract-dev
+```
+#### On Windows
 
+1. You need to have Tesseract OCR installed on your computer.<br>
+   get it from here. https://github.com/UB-Mannheim/tesseract/wiki <br>
+   Download the suitable version.
+2. Add Tesseract path to your System Environment. i.e. Edit system variables.
 
 ## Installing
 ```python
  pip3 install -r requirements 
+ ```
+ ## Executing program
+ ``` 
+ python main_gui.py
  ```
  ## Demo link
 
