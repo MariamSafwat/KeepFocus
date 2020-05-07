@@ -6,6 +6,7 @@ from gui.firstTimeTut import Tutorial
 from database.modelsfun import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+import time
 
 class App(QMainWindow):
     def __init__(self):
@@ -35,13 +36,24 @@ class App(QMainWindow):
         fileMenu.addAction(aboutButton)
         fileMenu.addAction(exitButton)
 
+
+        # show splash 
+        splash_pix = QtGui.QPixmap('logo.jpg')
+        splash_pix1 = splash_pix.scaled(550, 550, QtCore.Qt.KeepAspectRatio)
+        splash = QSplashScreen(splash_pix1, QtCore.Qt.WindowStaysOnTopHint)
+        splash.show()
+
+        time.sleep(3) 
+
+        splash.close()
+
         self.showMaximized()
         self.setMinimumSize(700,650)
         self.setContentsMargins(0, 0, 0, 0);
         self.setStyleSheet("background-color:#22282d;")
 
         show = ShowTutorial()
-        if show is True:
+        if show is False:
             self.ft = Tutorial()
             self.ft.show()
 
@@ -129,15 +141,6 @@ if __name__ == '__main__':
     QApplication.setStyle("Fusion")
     app = QApplication(sys.argv)
 
-    def strt():
-        splash.close()
-        ex = App()
-        ex.init_tray()
-        sys.exit(app.exec_())
-
-    splash_pix = QtGui.QPixmap('logo.jpg')
-    splash_pix1 = splash_pix.scaled(550, 550, QtCore.Qt.KeepAspectRatio)
-    splash = QSplashScreen(splash_pix1, QtCore.Qt.WindowStaysOnTopHint)
-    splash.show()
-
-    QtCore.QTimer.singleShot(3000, strt)
+    ex = App()
+    ex.init_tray()
+    sys.exit(app.exec_())
