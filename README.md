@@ -40,4 +40,5 @@ sudo apt-get install libtesseract-dev
  ```
  ## Demo link
 
+https://youtu.be/SkK6Z2_8CxI
 
