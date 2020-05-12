@@ -40,7 +40,11 @@ sudo apt-get install libtesseract-dev
  ```
  ## Team Members
  ``` 
- python main_gui.py
+ 1. Marina Fares.<br>
+ 2. Mariam Safwat. <br>
+ 3. Merna Raouf. <br>
+ 4. Nader Nabil. <br>
+ 5. Mina Atef.<br>
  ```
  ## Demo link
 
