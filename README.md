@@ -38,6 +38,10 @@ sudo apt-get install libtesseract-dev
  ``` 
  python main_gui.py
  ```
+ ## Team Members
+ ``` 
+ python main_gui.py
+ ```
  ## Demo link
 
 https://youtu.be/SkK6Z2_8CxI
