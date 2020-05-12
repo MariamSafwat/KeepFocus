@@ -40,11 +40,11 @@ sudo apt-get install libtesseract-dev
  ```
  ## Team Members
  ``` 
- 1. Marina Fares.<br>
- 2. Mariam Safwat. <br>
- 3. Merna Raouf. <br>
- 4. Nader Nabil. <br>
- 5. Mina Atef.<br>
+ 1. Marina Fares.
+ 2. Mariam Safwat. 
+ 3. Merna Raouf. 
+ 4. Nader Nabil. 
+ 5. Mina Atef.
  ```
  ## Demo link
 
